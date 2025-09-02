@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getNewsFromAPI, getGamesFromAPIFootball, getTransfers } from '../services/api';
+import { getNewsFromAPI, getGames, getTransfers } from '../services/api';
 import type { NewsArticle, Game, Transfer } from '../types';
 import NewsCard from '../components/modules/news/NewsCard';
 import GameCard from '../components/modules/games/GameCard';
@@ -23,7 +23,7 @@ const HomePage = () => {
         const news = await getNewsFromAPI();
         setLatestNews(news.slice(0, 3));
 
-        const games = await getGamesFromAPIFootball();
+        const games = await getGames();
         setUpcomingGames(games.filter(g => g.status === 'scheduled').slice(0, 3));
 
         const transfers = await getTransfers();

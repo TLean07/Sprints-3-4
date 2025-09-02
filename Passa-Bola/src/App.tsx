@@ -5,7 +5,7 @@ import { ProtectedRoute } from './components/common/ProtectedRoute';
 import MainLayout from './components/layouts/MainLayout';
 import LoginPage from './pages/Login';
 import HomePage from './pages/Home';
-import ProfilePage from './pages/Profile';
+import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFound';
 import NewsPage from './pages/News';
 import GamesPage from './pages/Games';

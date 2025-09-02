@@ -66,8 +66,8 @@ async function seedDatabase() {
     'game-1': {
       homeTeam: 'Corinthians',
       awayTeam: 'Ferroviária',
-      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Bras%C3%A3o_do_Sport_Club_Corinthians_Paulista.svg/1200px-Bras%C3%A3o_do_Sport_Club_Corinthians_Paulista.svg.png',
-      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Associa%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Esportes_-_logo.svg/1200px-Associa%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Esportes_-_logo.svg.png',
+      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png',
+      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Escudo_Associa%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Esportes.png/1024px-Escudo_Associa%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Esportes.png',
       date: '2025-09-06',
       time: '18:00',
       venue: 'Parque São Jorge',
@@ -77,8 +77,8 @@ async function seedDatabase() {
     'game-2': {
       homeTeam: 'Flamengo',
       awayTeam: 'Internacional',
-      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bras%C3%A3o_do_Clube_de_Regatas_do_Flamengo.svg/1200px-Bras%C3%A3o_do_Clube_de_Regatas_do_Flamengo.svg.png',
-      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sport_Club_Internacional_logo.svg/1200px-Sport_Club_Internacional_logo.svg.png',
+      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flamengo_braz_logo.svg/800px-Flamengo_braz_logo.svg.png',
+      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/SC_Internacional_Brazil_Logo.svg/800px-SC_Internacional_Brazil_Logo.svg.png',
       date: '2025-08-30',
       time: '16:00',
       venue: 'Estádio da Gávea',
@@ -88,8 +88,8 @@ async function seedDatabase() {
     'game-3': {
       homeTeam: 'Palmeiras',
       awayTeam: 'Santos',
-      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Escudo_da_Sociedade_Esportiva_Palmeiras.svg/1200px-Escudo_da_Sociedade_Esportiva_Palmeiras.svg.png',
-      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/thumb/1/15/Santos_FC_logo.svg/1200px-Santos_FC_logo.svg.png',
+      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/800px-Palmeiras_logo.svg.png',
+      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/0/03/Escudo_do_Santos_Futebol_Clube.png',
       date: '2025-09-13',
       time: '19:30',
       venue: 'Allianz Parque',
@@ -99,14 +99,58 @@ async function seedDatabase() {
     'game-4': {
       homeTeam: 'São Paulo',
       awayTeam: 'Cruzeiro',
-      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/FC_Sao_Paulo_logo.svg/1200px-FC_Sao_Paulo_logo.svg.png',
-      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Cruzeiro_Esporte_Clube_2021.svg/1200px-Cruzeiro_Esporte_Clube_2021.svg.png',
+      homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Brasao_do_Sao_Paulo_Futebol_Clube.svg/800px-Brasao_do_Sao_Paulo_Futebol_Clube.svg.png',
+      awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Cruzeiro_Esporte_Clube_%28logo%29.svg/800px-Cruzeiro_Esporte_Clube_%28logo%29.svg.png',
       date: '2025-08-27',
       time: '20:00',
       venue: 'Estádio Marcelo Portugal',
       score: '1-1',
       status: 'finished'
-    }
+    },
+    'game-5': {
+        homeTeam: 'Grêmio',
+        awayTeam: 'Avaí/Kindermann',
+        homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Gremio_logo.svg/800px-Gremio_logo.svg.png',
+        awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/8/8e/Kindermann.png',
+        date: '2025-08-25',
+        time: '15:00',
+        venue: 'Arena do Grêmio',
+        score: '3-0',
+        status: 'finished'
+      },
+      'game-6': {
+        homeTeam: 'Fluminense',
+        awayTeam: 'Botafogo',
+        homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/FFC_crest.svg/800px-FFC_crest.svg.png',
+        awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Botafogo_de_Futebol_e_Regatas_logo.svg/1200px-Botafogo_de_Futebol_e_Regatas_logo.svg.png',
+        date: '2025-09-20',
+        time: '11:00',
+        venue: 'Estádio Luso-Brasileiro',
+        score: null,
+        status: 'scheduled'
+      },
+      'game-7': {
+        homeTeam: 'Atlético-MG',
+        awayTeam: 'Real Brasília',
+        homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Atletico_mineiro_galo.png/800px-Atletico_mineiro_galo.png',
+        awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/4/40/RealBras%C3%ADliaFC.png',
+        date: '2025-08-29',
+        time: '17:00',
+        venue: 'Arena MRV',
+        score: '4-2',
+        status: 'finished'
+      },
+      'game-8': {
+        homeTeam: 'América-MG',
+        awayTeam: 'Red Bull Bragantino',
+        homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Escudo_Am%C3%A9rica_de_Minas.png',
+        awayTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/9/9e/RedBullBragantino.png',
+        date: '2025-09-21',
+        time: '16:00',
+        venue: 'Arena Independência',
+        score: null,
+        status: 'scheduled'
+      }
   };
 
   const transfers = {
@@ -128,6 +172,60 @@ async function seedDatabase() {
       date: '2025-08-10',
       status: 'confirmed'
     },
+    'transfer-3': {
+        playerName: 'Tamires',
+        playerImageUrl: 'https://s.glbimg.com/es/ge/f/original/2023/11/07/agif23101111453245.jpg',
+        oldClub: 'Corinthians',
+        newClub: 'Orlando Pride',
+        fee: 'Fim de Contrato',
+        date: '2025-08-01',
+        status: 'rumor'
+    },
+    'transfer-4': {
+        playerName: 'Bia Zaneratto',
+        playerImageUrl: 'https://conteudo.cbf.com.br/cdn/202307/20230712213715_85.jpeg',
+        oldClub: 'Palmeiras',
+        newClub: 'Kansas City Current',
+        fee: 'Não Divulgado',
+        date: '2025-07-25',
+        status: 'confirmed'
+    },
+    'transfer-5': {
+        playerName: 'Angelina',
+        playerImageUrl: 'https://conteudo.cbf.com.br/cdn/202402/20240222134553_290.jpeg',
+        oldClub: 'OL Reign',
+        newClub: 'Orlando Pride',
+        fee: 'Grátis',
+        date: '2025-07-28',
+        status: 'confirmed'
+    },
+    'transfer-6': {
+        playerName: 'Ary Borges',
+        playerImageUrl: 'https://conteudo.cbf.com.br/cdn/202307/20230713171350_973.jpeg',
+        oldClub: 'Racing Louisville',
+        newClub: 'UANL Tigres',
+        fee: '€1.2M',
+        date: '2025-08-12',
+        status: 'rumor'
+    },
+    'transfer-7': {
+        playerName: 'Tarciane',
+        playerImageUrl: 'https://s.glbimg.com/es/ge/f/original/2024/04/24/tarciane-houston-dash.jpeg',
+        oldClub: 'Corinthians',
+        newClub: 'Houston Dash',
+        fee: '€450K',
+        date: '2025-08-05',
+        status: 'confirmed'
+    },
+    'transfer-8': {
+        playerName: 'Yaya',
+        playerImageUrl: 'https://santosfc.vtexassets.com/arquivos/ids/173981-800-auto?v=638478442888200000&width=800&height=auto&aspect=true',
+        oldClub: 'Santos',
+        newClub: 'Lyon',
+        fee: '€700K',
+        date: '2025-08-22',
+        status: 'rumor'
+    }
   };
 
   await db.ref('news').set(news);

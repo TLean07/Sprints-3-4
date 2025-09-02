@@ -1,17 +1,18 @@
-import { ref, get, child } from "firebase/database";
-import { db } from "../lib/firebase";
+import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import { updateProfile } from "firebase/auth";
+import { ref as dbRef, get, set, child } from "firebase/database";
+import { auth, storage, db } from "../lib/firebase";
 import type { NewsArticle, Game, Transfer } from "../types";
 
 const NEWSAPI_API_KEY = import.meta.env.VITE_NEWSAPI_API_KEY;
-const APIFOOTBALL_KEY = import.meta.env.VITE_APIFOOTBALL_KEY;
 
-// --- Tipos para NewsAPI ---
 interface SourceFromAPI {
   id: string | null;
   name: string;
 }
 interface ArticleFromAPI {
   source: SourceFromAPI;
+  author: string | null;
   title: string;
   description: string;
   url: string;
@@ -21,30 +22,9 @@ interface ArticleFromAPI {
 }
 interface NewsAPIResponse {
   status: string;
+  totalResults: number;
   articles: ArticleFromAPI[];
 }
-
-// --- Tipos para API-Football ---
-interface FixtureFromAPI {
-  fixture: {
-    id: number;
-    date: string;
-    venue: { name: string | null };
-    status: { short: string };
-  };
-  teams: {
-    home: { id: number; name: string; logo: string };
-    away: { id: number; name: string; logo: string };
-  };
-  goals: {
-    home: number | null;
-    away: number | null;
-  };
-}
-interface APIFootballResponse {
-  response: FixtureFromAPI[];
-}
-
 
 export const getNewsFromAPI = async (): Promise<NewsArticle[]> => {
   try {
@@ -71,58 +51,26 @@ export const getNewsFromAPI = async (): Promise<NewsArticle[]> => {
   }
 };
 
-export const getGamesFromAPIFootball = async (): Promise<Game[]> => {
-  if (!APIFOOTBALL_KEY) {
-    console.error("Chave da API-Football não encontrada.");
-    return [];
-  }
+export const getGames = async (): Promise<Game[]> => {
   try {
-    const response = await fetch('https://v3.football.api-sports.io/fixtures?league=326&season=2025', {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'v3.football.api-sports.io',
-        'x-rapidapi-key': APIFOOTBALL_KEY,
-      },
-    });
-    const data: APIFootballResponse = await response.json();
-    if (!data.response || data.response.length === 0) {
+    const dbRef_ = dbRef(db);
+    const snapshot = await get(child(dbRef_, 'games'));
+    if (snapshot.exists()) {
+      const data: Record<string, Omit<Game, 'id'>> = snapshot.val();
+      return Object.keys(data).map(key => ({ ...data[key], id: key }));
+    } else {
       return [];
     }
-    return data.response.map((fixture): Game => {
-      const eventDate = new Date(fixture.fixture.date);
-      const statusMap = {
-        'TBD': 'scheduled', 'NS': 'scheduled', '1H': 'live', 'HT': 'live',
-        '2H': 'live', 'ET': 'live', 'P': 'live', 'FT': 'finished',
-        'AET': 'finished', 'PEN': 'finished'
-      };
-      const status = statusMap[fixture.fixture.status.short as keyof typeof statusMap] || 'scheduled';
-      return {
-        id: fixture.fixture.id.toString(),
-        homeTeam: fixture.teams.home.name,
-        awayTeam: fixture.teams.away.name,
-        homeTeamLogo: fixture.teams.home.logo,
-        awayTeamLogo: fixture.teams.away.logo,
-        date: eventDate.toLocaleDateString('pt-BR'),
-        time: eventDate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-        venue: fixture.fixture.venue.name || 'Não informado',
-        score: fixture.goals.home !== null ? `${fixture.goals.home}-${fixture.goals.away}` : null,
-        status: status as Game['status'],
-      };
-    }).sort((a: Game, b: Game) => {
-      const dateA = new Date(a.date.split('/').reverse().join('-') + 'T' + a.time);
-      const dateB = new Date(b.date.split('/').reverse().join('-') + 'T' + b.time);
-      return dateB.getTime() - dateA.getTime();
-    });
   } catch (error) {
-    console.error("Erro ao buscar jogos da API-Football:", error);
+    console.error("Erro ao buscar jogos do Firebase:", error);
     return [];
   }
 };
 
 export const getTransfers = async (): Promise<Transfer[]> => {
   try {
-    const dbRef = ref(db);
-    const snapshot = await get(child(dbRef, 'transfers'));
+    const dbRef_ = dbRef(db);
+    const snapshot = await get(child(dbRef_, 'transfers'));
     if (snapshot.exists()) {
       const data: Record<string, Omit<Transfer, 'id'>> = snapshot.val();
       return Object.keys(data).map(key => ({ ...data[key], id: key }));
@@ -133,4 +81,28 @@ export const getTransfers = async (): Promise<Transfer[]> => {
     console.error("Erro ao buscar transferências do Firebase:", error);
     return [];
   }
+};
+
+export const getUserProfileData = async (uid: string) => {
+  const snapshot = await get(child(dbRef(db), `users/${uid}`));
+  if (snapshot.exists()) {
+    return snapshot.val();
+  }
+  return null;
+};
+
+export const updateUserProfileData = async (uid: string, data: object) => {
+  return set(dbRef(db, `users/${uid}`), data);
+};
+
+export const uploadProfileImage = async (uid: string, file: File): Promise<string> => {
+  const fileRef = storageRef(storage, `profileImages/${uid}/${file.name}`);
+  const snapshot = await uploadBytes(fileRef, file);
+  const photoURL = await getDownloadURL(snapshot.ref);
+  
+  if (auth.currentUser) {
+    await updateProfile(auth.currentUser, { photoURL });
+  }
+
+  return photoURL;
 };
