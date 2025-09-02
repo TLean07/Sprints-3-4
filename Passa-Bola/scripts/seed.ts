@@ -1,40 +1,11 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-Claro. Aqui estão os códigos completos da solução anterior, atualizados e sem comentários.
-
------
-
-### **`scripts/seed.ts`**
-
-```typescript
 import { initializeApp, cert, type ServiceAccount } from 'firebase-admin/app';
 import { getDatabase } from 'firebase-admin/database';
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const serviceAccountPath = path.resolve(__dirname, '../../serviceAccountKey.json');
 const serviceAccount: ServiceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
 
@@ -172,110 +143,3 @@ seedDatabase().catch(error => {
   console.error('Erro no seeding:', error);
   process.exit(1);
 });
-```
-
------
-
-### **`tsconfig.node.json`**
-
-```json
-{
-  "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "./dist",
-    "noEmit": false,
-    "strict": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true
-  },
-  "include": ["scripts/**/*.ts"]
-}
-```
-
------
-
-### **`package.json`**
-
-```json
-{
-  "name": "passa-bola",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "build:scripts": "tsc -p tsconfig.node.json",
-    "db:seed": "npm run build:scripts && node dist/scripts/seed.js"
-  },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.12",
-    "firebase": "^12.2.1",
-    "framer-motion": "^12.23.12",
-    "lucide-react": "^0.542.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-hot-toast": "^2.6.0",
-    "react-router-dom": "^7.8.2"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
-    "autoprefixer": "^10.4.21",
-    "eslint": "^9.33.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "firebase-admin": "^13.5.0",
-    "globals": "^16.3.0",
-    "jsdom": "^26.1.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17",
-    "ts-node": "^10.9.2",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.39.1",
-    "vite": "^7.1.2",
-    "vitest": "^3.2.4"
-  }
-}
-```
-
------
-
-### **`.gitignore`**
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Firebase
-serviceAccountKey.json
