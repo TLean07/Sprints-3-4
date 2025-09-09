@@ -2,12 +2,12 @@
 <p align="center">Sprints 3 e 4</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Tecnologia-React-blue.svg" alt="React">
-  <img src="https://img.shields.io/badge/Tecnologia-TypeScript-informational.svg" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Estilização-Tailwind_CSS-06B6D4.svg" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/Autenticação-Firebase_Auth-FFCA28.svg" alt="Firebase Auth">
+  <img src="https://img.shields.io/badge/Framework-React-blue.svg" alt="React">
+  <img src="https://img.shields.io/badge/Linguagem-TypeScript-informational.svg" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Framework-Tailwind_CSS-06B6D4.svg" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Banco_de_Dados-Firebase_Auth-FFCA28.svg" alt="Firebase Auth">
   <img src="https://img.shields.io/badge/Banco_de_Dados-Firebase_Realtime-F57C00.svg" alt="Firebase Realtime Database">
-  <img src="https://img.shields.io/badge/Animação-Framer_Motion-purple.svg" alt="Framer Motion">
+  <img src="https://img.shields.io/badge/Framework-Framer_Motion-purple.svg" alt="Framer Motion">
 </p>
 
 > `Passa a Bola` é uma Single Page Application (SPA) moderna e responsiva, dedicada a cobrir o universo do futebol feminino. O projeto foi desenvolvido com uma arquitetura robusta em React e TypeScript, utilizando Firebase para autenticação e banco de dados, e uma interface de usuário visualmente impactante, criada com Tailwind CSS e Framer Motion.
