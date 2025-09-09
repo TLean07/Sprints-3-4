@@ -5,8 +5,8 @@
   <img src="https://img.shields.io/badge/Framework-React-blue.svg" alt="React">
   <img src="https://img.shields.io/badge/Linguagem-TypeScript-informational.svg" alt="TypeScript">
   <img src="https://img.shields.io/badge/Framework-Tailwind_CSS-06B6D4.svg" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/Banco_de_Dados-Firebase_Auth-FFCA28.svg" alt="Firebase Auth">
-  <img src="https://img.shields.io/badge/Banco_de_Dados-Firebase_Realtime-F57C00.svg" alt="Firebase Realtime Database">
+  <img src="https://img.shields.io/badge/Database-Firebase_Auth-FFCA28.svg" alt="Firebase Auth">
+  <img src="https://img.shields.io/badge/Database-Firebase_Realtime-F57C00.svg" alt="Firebase Realtime Database">
   <img src="https://img.shields.io/badge/Framework-Framer_Motion-purple.svg" alt="Framer Motion">
 </p>
 
