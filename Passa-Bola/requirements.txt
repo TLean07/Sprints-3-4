@@ -1,4 +1,0 @@
-Flask==2.3.2
-soccerdata==1.6.2
-pandas
-python-dotenv

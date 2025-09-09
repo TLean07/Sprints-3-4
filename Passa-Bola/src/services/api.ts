@@ -53,14 +53,16 @@ export const getNewsFromAPI = async (): Promise<NewsArticle[]> => {
 
 export const getGames = async (): Promise<Game[]> => {
   try {
-    const response = await fetch('/api/get_games');
-    if (!response.ok) {
-      throw new Error(`Erro na API: ${response.statusText}`);
+    const gamesRef = dbRef(db);
+    const snapshot = await get(child(gamesRef, 'games'));
+    if (snapshot.exists()) {
+      const data: Record<string, Omit<Game, 'id'>> = snapshot.val();
+      return Object.keys(data).map(key => ({ ...data[key], id: key }));
+    } else {
+      return [];
     }
-    const data: Game[] = await response.json();
-    return data;
   } catch (error) {
-    console.error("Erro ao buscar jogos da nossa API:", error);
+    console.error("Erro ao buscar jogos do Firebase:", error);
     return [];
   }
 };
