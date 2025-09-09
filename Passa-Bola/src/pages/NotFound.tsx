@@ -6,19 +6,19 @@ import { motion } from 'framer-motion';
 const NotFoundPage = () => {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className="min-h-screen flex flex-col items-center justify-center bg-light-bg text-center p-4"
     >
-      <Heading as="h1" variant="hero" className="text-primary mb-4">
+      <Heading as="h1" variant="hero" className="text-pink-600 mb-4">
         404
       </Heading>
       <Heading as="h2" variant="section" className="text-dark-text mb-4">
         Página Não Encontrada
       </Heading>
-      <p className="text-medium-gray max-w-md mt-2 mb-8">
+      <p className="text-medium-gray max-w-md mt-2 mb-8 text-lg font-body">
         A página que você está procurando não existe, foi removida ou o endereço foi digitado incorretamente.
       </p>
       <Link to="/">

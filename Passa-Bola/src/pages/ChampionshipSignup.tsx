@@ -48,12 +48,12 @@ const ChampionshipSignupPage = () => {
         className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-12 text-center"
       >
         <Card className="flex flex-col items-center">
-          <CheckCircle className="w-16 h-16 text-success mb-4" />
+          <CheckCircle className="w-20 h-20 text-success mb-6" />
           <Heading variant="subsection" className="mb-4">
             Inscrição Confirmada!
           </Heading>
-          <p className="text-medium-gray">
-            Obrigada por se inscrever! Entraremos em contato em breve com mais informações.
+          <p className="text-medium-gray text-lg">
+            Obrigado por se inscrever! Entraremos em contato em breve com mais informações.
           </p>
         </Card>
       </motion.div>
@@ -62,8 +62,8 @@ const ChampionshipSignupPage = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-12"
     >
       <Card>
@@ -85,7 +85,7 @@ const ChampionshipSignupPage = () => {
               id="fullName"
               value={formData.fullName}
               onChange={handleInputChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-pink-600"
               required
               minLength={3}
             />
@@ -101,7 +101,7 @@ const ChampionshipSignupPage = () => {
               id="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-pink-600"
               required
             />
           </div>
@@ -117,7 +117,7 @@ const ChampionshipSignupPage = () => {
               placeholder="000.000.000-00"
               value={formData.cpf}
               onChange={handleInputChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-pink-600"
               required
               pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
             />

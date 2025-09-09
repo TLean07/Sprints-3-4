@@ -46,32 +46,32 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-light-bg p-4 relative">
-      <Link to="/" className="absolute top-6 left-6 text-dark-text hover:text-primary transition-colors flex items-center gap-2">
-        <ArrowLeft size={20} /> <span className="font-semibold">Voltar para Home</span>
+      <Link to="/" className="absolute top-8 left-8 text-gray-900 hover:text-pink-600 transition-colors flex items-center gap-2 font-semibold">
+        <ArrowLeft size={24} /> Voltar para Home
       </Link>
 
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white p-8 rounded-xl shadow-lg"
+        className="max-w-md w-full bg-white p-10 rounded-3xl shadow-2xl"
       >
         <div className="text-center mb-8">
-          <img src="/logo.png" alt="Logo Passa a Bola" className="w-20 h-20 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold font-heading text-dark-text">
+          <img src="/logo.png" alt="Logo Passa a Bola" className="w-24 h-24 mx-auto mb-4" />
+          <h2 className="text-4xl font-bold font-heading text-dark-text">
             {isLogin ? 'Bem-vinda de Volta!' : 'Crie sua Conta'}
           </h2>
-          <p className="text-medium-gray mt-2">
+          <p className="text-medium-gray mt-2 font-body">
             {isLogin ? 'Acesse sua conta para continuar.' : 'Junte-se à comunidade do futebol feminino!'}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <input
             type="email"
             placeholder="E-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
             required
           />
           <input
@@ -79,7 +79,7 @@ const LoginPage = () => {
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
             required
             minLength={6}
           />
@@ -93,26 +93,26 @@ const LoginPage = () => {
           </Button>
         </form>
 
-        <div className="my-6 flex items-center">
+        <div className="my-8 flex items-center">
           <hr className="flex-grow border-t border-gray-300" />
-          <span className="mx-4 text-sm text-medium-gray">OU</span>
+          <span className="mx-4 text-sm text-medium-gray font-body">OU</span>
           <hr className="flex-grow border-t border-gray-300" />
         </div>
 
         <Button
           onClick={handleGoogleSignIn}
           className="w-full flex items-center justify-center gap-2 border-gray-300 text-dark-text bg-white hover:bg-gray-50 transition-colors"
-          variant="outline"
+          variant="secondary"
         >
-          <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
+          <img src="https://www.google.com/favicon.ico" alt="Google" className="w-6 h-6" />
           Continuar com o Google
         </Button>
 
-        <p className="mt-6 text-center text-sm text-medium-gray">
+        <p className="mt-8 text-center text-sm text-medium-gray">
           {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="font-semibold text-primary hover:underline ml-1"
+            className="font-semibold text-pink-600 hover:underline ml-1"
           >
             {isLogin ? 'Registre-se' : 'Faça login'}
           </button>

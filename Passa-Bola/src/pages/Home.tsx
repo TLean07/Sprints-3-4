@@ -39,26 +39,26 @@ const HomePage = () => {
 
   return (
     <div>
-      <section className="relative bg-secondary text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary to-secondary opacity-70"></div>
+      <section className="relative bg-gradient-to-br from-purple-800 to-pink-600 text-white py-24 md:py-40 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20 bg-hero-pattern"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <Heading as="h1" variant="hero" className="text-white mb-4">
+            <h1 className="text-4xl md:text-7xl font-extrabold font-heading text-white drop-shadow-lg">
               O Futebol Feminino na Palma da Sua Mão
-            </Heading>
-            <p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-white/90">
+            </h1>
+            <p className="mt-6 max-w-4xl mx-auto text-lg md:text-xl text-white/90 font-body font-light">
               Conectando tecnologia e paixão, Passa a Bola é o seu portal completo para o universo do futebol feminino. Notícias, jogos, transferências e muito mais.
             </p>
-            <div className="mt-8 flex justify-center gap-4">
+            <div className="mt-12 flex justify-center gap-6">
               <Link to="/noticias">
-                <Button variant="primary" size="lg">Ver Notícias</Button>
+                <Button variant="primary" size="lg" className="shadow-lg hover:shadow-xl">Ver Notícias</Button>
               </Link>
               <Link to="/jogos">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-secondary">Próximos Jogos</Button>
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-purple-800 shadow-lg hover:shadow-xl">Próximos Jogos</Button>
               </Link>
             </div>
           </motion.div>
@@ -81,7 +81,7 @@ const HomePage = () => {
           )}
           <div className="text-center mt-12">
             <Link to="/noticias">
-              <Button variant="secondary" size="md">Ver Todas as Notícias</Button>
+              <Button variant="outline" size="md">Ver Todas as Notícias</Button>
             </Link>
           </div>
         </div>
@@ -125,7 +125,7 @@ const HomePage = () => {
           )}
           <div className="text-center mt-12">
             <Link to="/transferencias">
-              <Button variant="secondary" size="md">Ver Todas as Transferências</Button>
+              <Button variant="outline" size="md">Ver Todas as Transferências</Button>
             </Link>
           </div>
         </div>

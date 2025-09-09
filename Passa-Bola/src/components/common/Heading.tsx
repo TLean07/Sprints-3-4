@@ -1,32 +1,56 @@
+import { motion, type Variants } from 'framer-motion';
 import type { ReactNode } from 'react';
-import { motion } from 'framer-motion';
 
 interface HeadingProps {
   children: ReactNode;
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  as?: 'h1' | 'h2' | 'h3' | 'h4';
   className?: string;
   variant?: 'hero' | 'section' | 'subsection';
 }
 
-export const Heading = ({ children, as: Component = 'h2', className, variant = 'section' }: HeadingProps) => {
-  const baseStyles = 'font-heading text-dark-text';
+const sentenceVariant: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 0.2,
+      staggerChildren: 0.04,
+    },
+  },
+};
 
+const letterVariant: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+export const Heading = ({ children, as = 'h2', className, variant = 'section' }: HeadingProps) => {
+  const baseStyles = 'font-heading text-dark-text';
   const variantStyles = {
-    hero: 'text-4xl md:text-6xl font-bold',
-    section: 'text-3xl md:text-4xl font-bold',
+    hero: 'text-4xl md:text-7xl font-extrabold',
+    section: 'text-3xl md:text-5xl font-bold',
     subsection: 'text-2xl md:text-3xl font-semibold',
   };
 
+  const text = typeof children === 'string' ? children : '';
+  const MotionComponent = motion[as];
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+    <MotionComponent
+      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+      variants={sentenceVariant}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}
-      transition={{ duration: 0.6 }}
     >
-      <Component className={`${baseStyles} ${variantStyles[variant]} ${className}`}>
-        {children}
-      </Component>
-    </motion.div>
+      {text.split('').map((char, index) => (
+        <motion.span key={`${char}-${index}`} variants={letterVariant} className="inline-block">
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </MotionComponent>
   );
 };

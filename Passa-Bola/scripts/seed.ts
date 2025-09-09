@@ -219,7 +219,7 @@ async function seedDatabase() {
     },
     'transfer-8': {
         playerName: 'Yaya',
-        playerImageUrl: 'https://santosfc.vtexassets.com/arquivos/ids/173981-800-auto?v=638478442888200000&width=800&height=auto&aspect=true',
+        playerImageUrl: '',
         oldClub: 'Santos',
         newClub: 'Lyon',
         fee: '€700K',

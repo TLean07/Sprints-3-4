@@ -10,6 +10,7 @@ import { Card } from '../components/ui/Card';
 import { Spinner } from '../components/common/Spinner';
 import { Camera, Edit, X } from 'lucide-react';
 import { getUserProfileData, updateUserProfileData, uploadProfileImage } from '../services/api';
+import { motion } from 'framer-motion';
 
 interface ProfileData {
   birthDate?: string;
@@ -125,7 +126,11 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-12">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="container mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-12"
+    >
       <Card>
         <div className="flex justify-between items-center mb-6">
           <Heading variant="subsection">
@@ -137,20 +142,20 @@ const ProfilePage = () => {
           </Button>
         </div>
 
-        <div className="relative w-28 h-28 mx-auto mb-6">
+        <div className="relative w-32 h-32 mx-auto mb-6">
           {isUploading ? (
             <div className="w-full h-full rounded-full flex items-center justify-center bg-gray-200">
               <Spinner />
             </div>
           ) : (
             <img 
-              src={photoURL || `https://ui-avatars.com/api/?name=${user.email}&background=E52A8A&color=fff`} 
+              src={photoURL || `https://ui-avatars.com/api/?name=${user.email}&background=FF1493&color=fff`} 
               alt="Foto do perfil"
-              className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-md"
+              className="w-32 h-32 rounded-full object-cover border-4 border-pink-600 shadow-md"
             />
           )}
-          <label htmlFor="photo-upload" className="absolute bottom-0 right-0 bg-secondary text-white p-2 rounded-full cursor-pointer hover:bg-opacity-80 transition-all">
-            <Camera size={16} />
+          <label htmlFor="photo-upload" className="absolute bottom-0 right-0 bg-gold-accent text-white p-3 rounded-full cursor-pointer hover:bg-yellow-500 transition-all">
+            <Camera size={18} />
             <input id="photo-upload" type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
           </label>
         </div>
@@ -159,17 +164,17 @@ const ProfilePage = () => {
           <div className="text-center space-y-4">
             <p className="text-2xl text-dark-text font-bold font-heading">{formData.displayName || 'Nome não informado'}</p>
             <p className="text-md text-medium-gray">{user.email}</p>
-            <p className="text-md text-dark-text">
-              <strong>Data de Nascimento:</strong>
-              <span className="text-medium-gray ml-2">{formData.birthDate || 'Não informado'}</span>
+            <p className="text-md text-dark-text font-semibold">
+              <span className="text-purple-800">Data de Nascimento:</span>
+              <span className="text-medium-gray ml-2 font-normal">{formData.birthDate || 'Não informado'}</span>
             </p>
-            <p className="text-md text-dark-text">
-              <strong>Gênero:</strong>
-              <span className="text-medium-gray ml-2">{formData.gender || 'Não informado'}</span>
+            <p className="text-md text-dark-text font-semibold">
+              <span className="text-purple-800">Gênero:</span>
+              <span className="text-medium-gray ml-2 font-normal">{formData.gender || 'Não informado'}</span>
             </p>
-            <div className="pt-4 space-y-2">
-              <Button onClick={handlePasswordReset} variant="outline" className="w-full max-w-xs mx-auto">Redefinir Senha</Button>
-              <Button onClick={handleLogout} variant="secondary" className="w-full max-w-xs mx-auto">Sair</Button>
+            <div className="pt-4 space-y-2 max-w-xs mx-auto">
+              <Button onClick={handlePasswordReset} variant="outline" className="w-full">Redefinir Senha</Button>
+              <Button onClick={handleLogout} variant="secondary" className="w-full">Sair</Button>
             </div>
           </div>
         ) : (
@@ -182,7 +187,7 @@ const ProfilePage = () => {
                 id="displayName"
                 value={formData.displayName}
                 onChange={handleInputChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-pink-600"
               />
             </div>
             <div>
@@ -193,7 +198,7 @@ const ProfilePage = () => {
                 id="birthDate"
                 value={formData.birthDate}
                 onChange={handleInputChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-pink-600"
               />
             </div>
             <div>
@@ -203,7 +208,7 @@ const ProfilePage = () => {
                 id="gender"
                 value={formData.gender}
                 onChange={handleInputChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-pink-600"
               >
                 <option value="">Prefiro não informar</option>
                 <option value="Feminino">Feminino</option>
@@ -219,7 +224,7 @@ const ProfilePage = () => {
           </form>
         )}
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

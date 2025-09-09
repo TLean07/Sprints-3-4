@@ -26,10 +26,10 @@ const NewsPage = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"
     >
       <Heading variant="section" className="text-center mb-10">
@@ -43,8 +43,8 @@ const NewsPage = () => {
             news.map(article => (
               <NewsCard key={article.id} article={article} />
             ))
-           ) : (
-            <p className="col-span-full text-center text-medium-gray">Não foi possível carregar as notícias no momento.</p>
+          ) : (
+            <p className="col-span-full text-center text-medium-gray text-lg">Não foi possível carregar as notícias no momento.</p>
           )}
         </div>
       )}
