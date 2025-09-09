@@ -1,5 +1,5 @@
 <h1 align="center">Passa a Bola</h1>
-<p align="center">Sprints 3 e 4</p>
+<p align="center">Sprint 3</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Framework-React-blue.svg" alt="React">
