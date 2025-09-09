@@ -1,6 +1,6 @@
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
-import { ref as dbRef, get, set, child } from "firebase/database";
+import { ref as dbRef, get, set, child, push } from "firebase/database";
 import { auth, storage, db } from "../lib/firebase";
 import type { NewsArticle, Game, Transfer } from "../types";
 
@@ -53,24 +53,22 @@ export const getNewsFromAPI = async (): Promise<NewsArticle[]> => {
 
 export const getGames = async (): Promise<Game[]> => {
   try {
-    const dbRef_ = dbRef(db);
-    const snapshot = await get(child(dbRef_, 'games'));
-    if (snapshot.exists()) {
-      const data: Record<string, Omit<Game, 'id'>> = snapshot.val();
-      return Object.keys(data).map(key => ({ ...data[key], id: key }));
-    } else {
-      return [];
+    const response = await fetch('/api/get_games');
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.statusText}`);
     }
+    const data: Game[] = await response.json();
+    return data;
   } catch (error) {
-    console.error("Erro ao buscar jogos do Firebase:", error);
+    console.error("Erro ao buscar jogos da nossa API:", error);
     return [];
   }
 };
 
 export const getTransfers = async (): Promise<Transfer[]> => {
   try {
-    const dbRef_ = dbRef(db);
-    const snapshot = await get(child(dbRef_, 'transfers'));
+    const transfersRef = dbRef(db);
+    const snapshot = await get(child(transfersRef, 'transfers'));
     if (snapshot.exists()) {
       const data: Record<string, Omit<Transfer, 'id'>> = snapshot.val();
       return Object.keys(data).map(key => ({ ...data[key], id: key }));
@@ -105,4 +103,13 @@ export const uploadProfileImage = async (uid: string, file: File): Promise<strin
   }
 
   return photoURL;
+};
+
+export const saveChampionshipSignup = async (signupData: { fullName: string; email: string; cpf: string; }) => {
+  const signupsRef = dbRef(db, 'championshipSignups');
+  const newSignupRef = push(signupsRef);
+  return set(newSignupRef, {
+    ...signupData,
+    createdAt: new Date().toISOString(),
+  });
 };

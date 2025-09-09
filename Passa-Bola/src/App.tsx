@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthProvider';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import MainLayout from './components/layouts/MainLayout';
+
 import LoginPage from './pages/Login';
 import HomePage from './pages/Home';
 import ProfilePage from './pages/ProfilePage';
@@ -10,6 +11,7 @@ import NotFoundPage from './pages/NotFound';
 import NewsPage from './pages/News';
 import GamesPage from './pages/Games';
 import TransfersPage from './pages/Transfers';
+import ChampionshipSignupPage from './pages/ChampionshipSignup';
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
             <Route path="/noticias" element={<NewsPage />} />
             <Route path="/jogos" element={<GamesPage />} />
             <Route path="/transferencias" element={<TransfersPage />} />
+            <Route path="/inscrever-campeonato" element={<ChampionshipSignupPage />} />
             
             <Route element={<ProtectedRoute />}>
               <Route path="/perfil" element={<ProfilePage />} />

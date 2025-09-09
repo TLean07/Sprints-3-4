@@ -15,7 +15,7 @@ export const Navbar = () => {
     try {
       await signOut(auth);
       toast.success('Você saiu com sucesso!');
-      setIsMenuOpen(false); // Fecha o menu após logout
+      setIsMenuOpen(false);
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
       toast.error('Erro ao sair.');
@@ -52,6 +52,13 @@ export const Navbar = () => {
       >
         Transferências
       </NavLink>
+      <NavLink 
+        to="/inscrever-campeonato" 
+        className="font-semibold bg-primary text-white px-3 py-1.5 rounded-md hover:opacity-90 transition-opacity"
+        onClick={() => setIsMenuOpen(false)}
+      >
+        Inscreva-se
+      </NavLink>
       {user ? (
         <>
           <NavLink 
@@ -68,7 +75,7 @@ export const Navbar = () => {
       ) : (
         <NavLink 
           to="/login" 
-          className="bg-primary text-white font-bold py-2 px-4 rounded-lg hover:opacity-90 transition-opacity"
+          className="font-semibold text-dark-text hover:text-primary transition-colors"
           onClick={() => setIsMenuOpen(false)}
         >
           Entrar
@@ -88,12 +95,10 @@ export const Navbar = () => {
             </span>
           </NavLink>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             {navItems}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-dark-text focus:outline-none">
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -102,7 +107,6 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

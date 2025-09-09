@@ -14,23 +14,7 @@ const GamesPage = () => {
     const fetchGames = async () => {
       try {
         const allGames = await getGames();
-        
-        const sortedGames = allGames.sort((a, b) => {
-            if (a.status === 'live' && b.status !== 'live') return -1;
-            if (b.status === 'live' && a.status !== 'live') return 1;
-
-            const dateA = new Date(`${a.date}T${a.time}`);
-            const dateB = new Date(`${b.date}T${b.time}`);
-
-            if (a.status === 'scheduled' && b.status === 'scheduled') {
-                return dateA.getTime() - dateB.getTime();
-            }
-            if (a.status === 'finished' && b.status === 'finished') {
-                return dateB.getTime() - dateA.getTime();
-            }
-            return 0;
-        });
-        setGames(sortedGames);
+        setGames(allGames);
       } catch (error) {
         console.error(error);
       } finally {
@@ -49,7 +33,7 @@ const GamesPage = () => {
       className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"
     >
       <Heading variant="section" className="text-center mb-10">
-        Próximos Jogos & Resultados
+        Jogos e Resultados (Brasileirão Feminino)
       </Heading>
       {loading ? (
         <div className="flex justify-center mt-10"><Spinner /></div>
@@ -60,7 +44,7 @@ const GamesPage = () => {
               <GameCard key={game.id} game={game} />
             ))
           ) : (
-            <p className="col-span-full text-center text-medium-gray">Não há jogos cadastrados no momento.</p>
+            <p className="col-span-full text-center text-medium-gray">Não foi possível carregar os jogos no momento. Tente novamente mais tarde.</p>
           )}
         </div>
       )}
