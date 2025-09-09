@@ -1,5 +1,5 @@
 <h1 align="center">Passa a Bola</h1>
-<p align="center">O portal definitivo sobre o futebol feminino</p>
+<p align="center">Sprints 3 e 4</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Tecnologia-React-blue.svg" alt="React">
@@ -99,8 +99,8 @@ Para rodar o projeto localmente, siga os passos abaixo.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-    cd seu-repositorio
+    git clone [https://github.com/TLean07/Sprints-3-4.git](https://github.com/TLean07/Sprints-3-4.git)
+    cd Passa-Bola
     ```
 
 2.  **Instale as dependências:**
@@ -117,7 +117,6 @@ Para rodar o projeto localmente, siga os passos abaixo.
     ```bash
     npm run dev
     ```
-    O projeto será iniciado e estará acessível em `http://localhost:5173`.
 
 ---
 
