@@ -211,8 +211,8 @@ export default function MobileLayout() {
       </div>
 
       {/* Bottom Navigation for Mobile */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-30">
-        <div className="flex">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 z-30 shadow-2xl">
+        <div className="flex items-center px-2 py-1">
           {navItems.slice(0, 4).map((item) => {
             const Icon = item.icon;
             const isActive = currentPath === item.path;
@@ -222,16 +222,28 @@ export default function MobileLayout() {
                 key={item.id}
                 onClick={() => handleNavigation(item.path)}
                 className={cn(
-                  'flex-1 flex flex-col items-center py-2 px-1 transition-colors',
+                  'flex-1 flex flex-col items-center py-3 px-2 mx-1 rounded-2xl transition-all duration-300 relative overflow-hidden active:scale-95',
                   isActive
-                    ? 'text-primary-600'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'text-primary-600 bg-primary-100 shadow-lg transform scale-105'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                 )}
               >
-                <Icon className="w-6 h-6" />
-                <span className="text-2xs font-medium mt-1">
+                {isActive && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-primary-600/5 rounded-2xl" />
+                )}
+                <Icon className={cn(
+                  "transition-all duration-300 relative z-10",
+                  isActive ? "w-7 h-7 mb-1" : "w-6 h-6 mb-0.5"
+                )} />
+                <span className={cn(
+                  "text-2xs font-medium transition-all duration-300 relative z-10",
+                  isActive ? "font-semibold text-primary-700" : ""
+                )}>
                   {item.label}
                 </span>
+                {isActive && (
+                  <div className="absolute bottom-0 w-6 h-1 bg-primary-500 rounded-full" />
+                )}
               </button>
             );
           })}
@@ -239,22 +251,34 @@ export default function MobileLayout() {
           <button
             onClick={() => navigate(user ? '/perfil' : '/login')}
             className={cn(
-              'flex-1 flex flex-col items-center py-2 px-1 transition-colors',
+              'flex-1 flex flex-col items-center py-3 px-2 mx-1 rounded-2xl transition-all duration-300 relative overflow-hidden active:scale-95',
               currentPath === '/perfil'
-                ? 'text-primary-600'
-                : 'text-gray-500 hover:text-gray-700'
+                ? 'text-primary-600 bg-primary-100 shadow-lg transform scale-105'
+                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             )}
           >
-            <User className="w-6 h-6" />
-            <span className="text-2xs font-medium mt-1">
+            {currentPath === '/perfil' && (
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-primary-600/5 rounded-2xl" />
+            )}
+            <User className={cn(
+              "transition-all duration-300 relative z-10",
+              currentPath === '/perfil' ? "w-7 h-7 mb-1" : "w-6 h-6 mb-0.5"
+            )} />
+            <span className={cn(
+              "text-2xs font-medium transition-all duration-300 relative z-10",
+              currentPath === '/perfil' ? "font-semibold text-primary-700" : ""
+            )}>
               Perfil
             </span>
+            {currentPath === '/perfil' && (
+              <div className="absolute bottom-0 w-6 h-1 bg-primary-500 rounded-full" />
+            )}
           </button>
         </div>
       </nav>
 
       {/* Bottom padding to account for mobile navigation */}
-      <div className="h-16 lg:hidden" />
+      <div className="h-20 lg:hidden" />
     </div>
   );
 }
