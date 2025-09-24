@@ -44,7 +44,7 @@ const GameCard = ({ game }: { game: Game }) => {
     <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="bg-white rounded-3xl p-6 shadow-card border border-white hover:shadow-2xl transition-all duration-300 cursor-pointer"
+      className="relative bg-white rounded-3xl p-6 shadow-card border border-white hover:shadow-2xl transition-all duration-300 cursor-pointer"
     >
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
