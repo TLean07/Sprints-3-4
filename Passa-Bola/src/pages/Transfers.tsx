@@ -48,7 +48,7 @@ const mockTransfers: PlayerTransfer[] = [
   {
     id: '1',
     playerName: 'Geyse Ferreira',
-    playerAvatar: '/attached_assets/stock_images/women_soccer_players_c153866f.jpg',
+    playerAvatar: 'https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/GEYSE%20FERREIRA.jpg',
     position: 'Atacante',
     age: 25,
     nationality: 'Brasil',
