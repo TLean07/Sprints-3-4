@@ -47,6 +47,26 @@ const SettingsPage = () => {
     toast.success(newMode ? '🌙 Modo escuro ativado' : '☀️ Modo claro ativado');
   };
 
+  const handleLanguageChange = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    const languageNames = {
+      'pt-BR': 'Português (Brasil)',
+      'en-US': 'English (US)', 
+      'es-ES': 'Español'
+    };
+    toast.success(`🌍 Idioma alterado para ${languageNames[newLanguage as keyof typeof languageNames]}`);
+  };
+
+  const handlePrivacyChange = (key: string, value: string) => {
+    setPrivacy(prev => ({ ...prev, [key]: value }));
+    const privacyLabels = {
+      'public': 'Público',
+      'friends': 'Apenas amigos',
+      'private': 'Privado'
+    };
+    toast.success(`🔒 Configuração de privacidade alterada para ${privacyLabels[value as keyof typeof privacyLabels]}`);
+  };
+
   const settingSections = [
     {
       title: 'Notificações',
@@ -98,6 +118,7 @@ const SettingsPage = () => {
           description: 'Português (Brasil)',
           type: 'select',
           value: language,
+          onChange: handleLanguageChange,
           options: [
             { value: 'pt-BR', label: 'Português (Brasil)' },
             { value: 'en-US', label: 'English (US)' },
@@ -115,6 +136,7 @@ const SettingsPage = () => {
           description: 'Quem pode ver seu perfil',
           type: 'select',
           value: privacy.profile,
+          onChange: (value: string) => handlePrivacyChange('profile', value),
           options: [
             { value: 'public', label: 'Público' },
             { value: 'friends', label: 'Apenas amigos' },
@@ -126,6 +148,7 @@ const SettingsPage = () => {
           description: 'Visibilidade das suas curtidas',
           type: 'select',
           value: privacy.activity,
+          onChange: (value: string) => handlePrivacyChange('activity', value),
           options: [
             { value: 'public', label: 'Público' },
             { value: 'friends', label: 'Apenas amigos' },
@@ -227,7 +250,8 @@ const SettingsPage = () => {
                       {item.type === 'select' && (
                         <select
                           value={item.value as string}
-                          className="bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm"
+                          onChange={(e) => item.onChange?.(e.target.value)}
+                          className="bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
                         >
                           {item.options?.map(option => (
                             <option key={option.value} value={option.value}>
