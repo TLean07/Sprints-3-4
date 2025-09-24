@@ -18,18 +18,18 @@ const TransferCard = ({ transfer }: TransferCardProps) => {
       transition={{ duration: 0.8 }}
       className="h-full"
     >
-      <Card className="flex items-center gap-4 hover:shadow-2xl transition-shadow duration-300 p-4 md:p-6 overflow-hidden">
+      <Card className="flex items-center gap-2 sm:gap-3 md:gap-4 hover:shadow-2xl transition-shadow duration-300 p-3 sm:p-4 md:p-6 overflow-hidden">
         <div className="flex-shrink-0">
-          <img src={transfer.playerImageUrl} alt={transfer.playerName} className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-primary-200" />
+          <img src={transfer.playerImageUrl} alt={transfer.playerName} className="w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20 rounded-full object-cover border-2 border-primary-200" />
         </div>
         <div className="flex-1 min-w-0 overflow-hidden">
-          <h3 className="font-bold text-lg md:text-xl text-gray-900 truncate">{transfer.playerName}</h3>
-          <div className="flex items-center text-gray-600 text-sm mt-1 overflow-hidden">
-            <span className="truncate flex-shrink-0 max-w-24">{transfer.oldClub}</span>
-            <ArrowRight size={16} className="mx-2 text-primary-600 flex-shrink-0" />
-            <span className="truncate flex-shrink-0 max-w-24">{transfer.newClub}</span>
+          <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-gray-900 truncate">{transfer.playerName}</h3>
+          <div className="flex items-center text-gray-600 text-xs sm:text-sm mt-1 overflow-hidden">
+            <span className="truncate flex-shrink-0 max-w-16 sm:max-w-20 md:max-w-24">{transfer.oldClub}</span>
+            <ArrowRight size={14} className="mx-1 sm:mx-2 text-primary-600 flex-shrink-0" />
+            <span className="truncate flex-shrink-0 max-w-16 sm:max-w-20 md:max-w-24">{transfer.newClub}</span>
           </div>
-          <p className="text-sm mt-2 font-semibold text-gray-700 truncate">
+          <p className="text-xs sm:text-sm mt-1 sm:mt-2 font-semibold text-gray-700 truncate">
             <span className="text-primary-600">Taxa:</span> {transfer.fee || 'Não Divulgado'}
           </p>
           <p className={`text-xs mt-1 font-semibold truncate ${statusColor}`}>

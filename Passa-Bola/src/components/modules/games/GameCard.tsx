@@ -55,7 +55,7 @@ const GameCard = ({ game }: { game: Game }) => {
         transition: { duration: 0.2 }
       }}
       whileTap={{ scale: 0.98 }}
-      className={`relative bg-white/80 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-card border border-white/50 hover:shadow-2xl hover:bg-white/90 transition-all duration-300 cursor-pointer overflow-hidden ${game.status === 'live' ? 'ring-2 ring-red-400/20' : ''}`}
+      className={`relative bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 shadow-card border border-white/50 hover:shadow-2xl hover:bg-white/90 transition-all duration-300 cursor-pointer overflow-hidden ${game.status === 'live' ? 'ring-2 ring-red-400/20' : ''}`}
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-pink-50/50 rounded-3xl" />
@@ -135,13 +135,13 @@ const GameCard = ({ game }: { game: Game }) => {
             whileHover={{ x: 2 }}
             className="flex items-center justify-between group"
           >
-            <div className="flex items-center space-x-3 flex-1 overflow-hidden">
+            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden">
               <div className="relative flex-shrink-0">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-white to-gray-50 rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
                   <img 
                     src={game.homeTeamLogo} 
                     alt={game.homeTeam} 
-                    className="w-6 h-6 sm:w-8 sm:h-8 object-contain" 
+                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain" 
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling!.textContent = game.homeTeam.charAt(0).toUpperCase();
@@ -154,17 +154,17 @@ const GameCard = ({ game }: { game: Game }) => {
                 )}
               </div>
               <div className="flex-1 min-w-0 overflow-hidden">
-                <p className="font-bold text-gray-900 truncate text-sm sm:text-base group-hover:text-primary-600 transition-colors">
+                <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
                   {game.homeTeam.replace(' Feminino', '')}
                 </p>
                 <p className="text-xs text-gray-500 font-medium">Casa</p>
               </div>
             </div>
             
-            <div className="text-right ml-2 sm:ml-4 flex-shrink-0">
+            <div className="text-right ml-1 sm:ml-2 md:ml-4 flex-shrink-0">
               <motion.p 
                 whileHover={{ scale: 1.1 }}
-                className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
+                className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
               >
                 {game.score ? game.score.split('-')[0] : '-'}
               </motion.p>
@@ -176,7 +176,7 @@ const GameCard = ({ game }: { game: Game }) => {
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
             <motion.div 
               whileHover={{ scale: 1.1, rotate: 180 }}
-              className="mx-4 px-3 py-1 bg-gradient-to-r from-primary-100 to-pink-100 text-primary-600 rounded-full text-xs font-bold border border-primary-200"
+              className="mx-2 sm:mx-4 px-2 sm:px-3 py-1 bg-gradient-to-r from-primary-100 to-pink-100 text-primary-600 rounded-full text-xs font-bold border border-primary-200"
             >
               VS
             </motion.div>
@@ -188,13 +188,13 @@ const GameCard = ({ game }: { game: Game }) => {
             whileHover={{ x: -2 }}
             className="flex items-center justify-between group"
           >
-            <div className="flex items-center space-x-3 flex-1 overflow-hidden">
+            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden">
               <div className="relative flex-shrink-0">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-white to-gray-50 rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
                   <img 
                     src={game.awayTeamLogo} 
                     alt={game.awayTeam} 
-                    className="w-6 h-6 sm:w-8 sm:h-8 object-contain" 
+                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain" 
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling!.textContent = game.awayTeam.charAt(0).toUpperCase();
@@ -207,17 +207,17 @@ const GameCard = ({ game }: { game: Game }) => {
                 )}
               </div>
               <div className="flex-1 min-w-0 overflow-hidden">
-                <p className="font-bold text-gray-900 truncate text-sm sm:text-base group-hover:text-primary-600 transition-colors">
+                <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
                   {game.awayTeam.replace(' Feminino', '')}
                 </p>
                 <p className="text-xs text-gray-500 font-medium">Visitante</p>
               </div>
             </div>
             
-            <div className="text-right ml-2 sm:ml-4 flex-shrink-0">
+            <div className="text-right ml-1 sm:ml-2 md:ml-4 flex-shrink-0">
               <motion.p 
                 whileHover={{ scale: 1.1 }}
-                className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
+                className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
               >
                 {game.score ? game.score.split('-')[1] : '-'}
               </motion.p>
