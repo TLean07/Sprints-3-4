@@ -18,5 +18,19 @@ export default defineConfig({
     hmr: {
       clientPort: 443
     }
+  },
+  preview: {
+    host: true,
+    port: 5000,
+    strictPort: true,
+    allowedHosts: [
+      'localhost',
+      '127.0.0.1',
+      '.replit.dev',
+      '.repl.co'
+    ],
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
   }
 })

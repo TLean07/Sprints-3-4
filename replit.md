@@ -58,6 +58,7 @@ The application requires the following Firebase configuration variables:
 - Preview command: `sh -c "cd Passa-Bola && npm run preview"` (fixed to run from correct directory)
 - Optimized for static site deployment
 - **Fixed**: Deployment commands now correctly navigate to project subdirectory
+- **Fixed**: Vite preview configured to serve on port 5000 with strictPort for deployment
 - ✅ Build tested successfully - generates optimized production files in dist/
 
 ## Notes
