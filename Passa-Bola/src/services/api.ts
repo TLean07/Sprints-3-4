@@ -4,7 +4,11 @@ import { ref as dbRef, get, set, child, push } from "firebase/database";
 import { auth, storage, db } from "../lib/firebase";
 import type { NewsArticle, Game, Transfer } from "../types";
 
-const NEWSAPI_API_KEY = import.meta.env.VITE_NEWSAPI_API_KEY || '4eea2a9cc933469b9d72bbf074452732';
+const NEWSAPI_API_KEY = import.meta.env.VITE_NEWSAPI_API_KEY;
+
+if (!NEWSAPI_API_KEY) {
+  console.warn('⚠️ NEWSAPI_API_KEY não configurada. Usando dados mock.');
+}
 
 interface SourceFromAPI {
   id: string | null;
@@ -27,15 +31,31 @@ interface NewsAPIResponse {
 }
 
 export const getNewsFromAPI = async (): Promise<NewsArticle[]> => {
+  if (!NEWSAPI_API_KEY) {
+    console.log('NewsAPI key não disponível, usando dados mock');
+    return [];
+  }
+
   try {
     const query = encodeURIComponent('"futebol feminino" OR "Brasileirão Feminino" OR "seleção feminina"');
     const today = new Date();
     const oneMonthAgo = new Date(today.setMonth(today.getMonth() - 1)).toISOString().split('T')[0];
     const response = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=${oneMonthAgo}&language=pt&sortBy=publishedAt&apiKey=${NEWSAPI_API_KEY}`);
+    
+    if (!response.ok) {
+      throw new Error(`NewsAPI error: ${response.status}`);
+    }
+    
     const data: NewsAPIResponse = await response.json();
-    if (data.status !== 'ok' || !data.articles) return [];
+    if (data.status !== 'ok' || !data.articles) {
+      throw new Error('Resposta inválida da NewsAPI');
+    }
+    
+    console.log(`✅ Carregadas ${data.articles.length} notícias da NewsAPI`);
+    
     return data.articles
-      .filter(article => article.urlToImage && article.description)
+      .filter(article => article.urlToImage && article.description && article.title.length > 10)
+      .slice(0, 10) // Limitar a 10 artigos mais recentes
       .map((article): NewsArticle => ({
         id: article.url,
         title: article.title,
@@ -43,10 +63,10 @@ export const getNewsFromAPI = async (): Promise<NewsArticle[]> => {
         imageUrl: article.urlToImage || 'https://via.placeholder.com/600x400.png?text=Passa+a+Bola',
         category: article.source.name,
         date: new Date(article.publishedAt).toLocaleDateString('pt-BR'),
-        content: article.content || undefined,
+        content: article.content || article.description,
     }));
   } catch (error) {
-    console.error("Erro ao buscar notícias da API:", error);
+    console.error("❌ Erro ao buscar notícias da API:", error);
     return [];
   }
 };

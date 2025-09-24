@@ -171,43 +171,54 @@ export default function NewsPage() {
     const loadNews = async () => {
       setLoading(true);
       try {
-        // Try to fetch from real API first
+        // Primeiro, tenta buscar dados reais da NewsAPI
         const { getNewsFromAPI } = await import('../services/api');
-        const realNews = await getNewsFromAPI();
+        const realApiNews = await getNewsFromAPI();
         
-        if (realNews && realNews.length > 0) {
-          // Convert real news to our format
-          const convertedNews = realNews.map((article, index): NewsArticle => ({
+        if (realApiNews && realApiNews.length > 0) {
+          console.log(`📰 Carregadas ${realApiNews.length} notícias reais da NewsAPI`);
+          
+          // Converte dados da API para nosso formato
+          const convertedRealNews = realApiNews.map((article, index): NewsArticle => ({
             id: article.id,
             title: article.title,
-            subtitle: article.excerpt.slice(0, 100) + '...',
+            subtitle: article.excerpt.slice(0, 120) + '...',
             content: article.content || article.excerpt,
             excerpt: article.excerpt,
             coverImage: article.imageUrl,
-            authorName: 'Equipe Passa a Bola',
+            authorName: article.category || 'Passa a Bola',
             authorAvatar: '/attached_assets/stock_images/beautiful_woman_foot_fc1a6e36.jpg',
             publishedAt: new Date(article.date.split('/').reverse().join('-')).toISOString(),
-            readTime: Math.ceil(article.excerpt.length / 200) + Math.floor(Math.random() * 3) + 2,
-            category: index === 0 ? 'news' : ['news', 'interview', 'analysis', 'match-report'][Math.floor(Math.random() * 4)] as any,
-            tags: article.title.toLowerCase().includes('marta') ? ['Marta', 'Seleção'] :
-                  article.title.toLowerCase().includes('corinthians') ? ['Corinthians', 'Brasileirão'] :
-                  ['Futebol Feminino', 'Brasil'],
+            readTime: Math.ceil(article.excerpt.length / 200) + Math.floor(Math.random() * 2) + 3,
+            category: index === 0 ? 'news' : 
+                     article.title.toLowerCase().includes('entrevista') ? 'interview' :
+                     article.title.toLowerCase().includes('análise') ? 'analysis' :
+                     article.title.toLowerCase().includes('jogo') ? 'match-report' : 'news',
+            tags: [
+              ...article.title.toLowerCase().includes('marta') ? ['Marta', 'Seleção'] : [],
+              ...article.title.toLowerCase().includes('corinthians') ? ['Corinthians'] : [],
+              ...article.title.toLowerCase().includes('palmeiras') ? ['Palmeiras'] : [],
+              ...article.title.toLowerCase().includes('brasileiro') ? ['Brasileirão'] : [],
+              'Futebol Feminino'
+            ].filter(Boolean),
             featured: index === 0,
-            trending: Math.random() > 0.6,
+            trending: index < 3, // Primeiras 3 são trending
             reactions: {
-              likes: Math.floor(Math.random() * 2000) + 500,
-              comments: Math.floor(Math.random() * 200) + 20,
-              shares: Math.floor(Math.random() * 150) + 10
+              likes: Math.floor(Math.random() * 1500) + 300,
+              comments: Math.floor(Math.random() * 150) + 15,
+              shares: Math.floor(Math.random() * 100) + 8
             }
           }));
           
-          setNews([...convertedNews, ...mockNews]);
-          setFilteredNews([...convertedNews, ...mockNews]);
+          // Combina notícias reais com algumas notícias mock para variedade
+          const combinedNews = [...convertedRealNews, ...mockNews.slice(0, 3)];
+          setNews(combinedNews);
+          setFilteredNews(combinedNews);
         } else {
-          throw new Error('No real news available');
+          throw new Error('Nenhuma notícia real disponível');
         }
       } catch (error) {
-        console.log('Using mock data as fallback');
+        console.log('🔄 Usando dados de exemplo como fallback');
         setNews(mockNews);
         setFilteredNews(mockNews);
       } finally {
