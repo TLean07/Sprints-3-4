@@ -207,14 +207,14 @@ export default function Games() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-pink-50 pb-20 lg:pb-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-pink-50 pb-20 lg:pb-8 overflow-x-hidden">
       {/* Hero Header */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-700 to-pink-600" />
         <div className="absolute inset-0 bg-[url('/attached_assets/stock_images/soccer_stadium_aerial_view.jpg')] bg-cover bg-center opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         
-        <div className="relative z-10 px-4 py-8">
+        <div className="relative z-10 px-2 sm:px-4 py-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -326,13 +326,13 @@ export default function Games() {
       </div>
 
       {/* Content */}
-      <div className="px-4 py-6 space-y-8">
+      <div className="px-2 sm:px-4 py-6 space-y-6 sm:space-y-8 overflow-hidden">
         {/* Live Games Section */}
         {liveGames.length > 0 && (filter === 'all' || filter === 'live') && (
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
+            className="space-y-4 max-w-full overflow-hidden"
           >
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-2xl shadow-lg">
@@ -346,7 +346,7 @@ export default function Games() {
               </div>
               <h2 className="text-xl font-bold text-gray-800">Jogos Acontecendo Agora</h2>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6 overflow-hidden">
               <AnimatePresence>
                 {liveGames.map((game, index) => (
                   <motion.div
@@ -355,6 +355,7 @@ export default function Games() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ delay: index * 0.1 }}
+                    className="overflow-hidden"
                   >
                     <GameCard game={game} />
                   </motion.div>
@@ -379,7 +380,7 @@ export default function Games() {
               </div>
               <h2 className="text-xl font-bold text-gray-800">Jogos de Hoje</h2>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6 overflow-hidden">
               <AnimatePresence>
                 {todayGames.map((game, index) => (
                   <motion.div
@@ -388,6 +389,7 @@ export default function Games() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ delay: index * 0.1 }}
+                    className="overflow-hidden"
                   >
                     <GameCard game={game} />
                   </motion.div>
@@ -412,7 +414,7 @@ export default function Games() {
               </div>
               <h2 className="text-xl font-bold text-gray-800">Próximos Jogos</h2>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6 overflow-hidden">
               <AnimatePresence>
                 {upcomingGames.map((game, index) => (
                   <motion.div
@@ -421,6 +423,7 @@ export default function Games() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ delay: index * 0.1 }}
+                    className="overflow-hidden"
                   >
                     <GameCard game={game} />
                   </motion.div>
@@ -445,7 +448,7 @@ export default function Games() {
               </div>
               <h2 className="text-xl font-bold text-gray-800">Jogos Finalizados</h2>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-6 overflow-hidden">
               <AnimatePresence>
                 {finishedGames.map((game, index) => (
                   <motion.div
@@ -454,6 +457,7 @@ export default function Games() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ delay: index * 0.1 }}
+                    className="overflow-hidden"
                   >
                     <GameCard game={game} />
                   </motion.div>
