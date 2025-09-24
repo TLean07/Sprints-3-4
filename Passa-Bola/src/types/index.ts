@@ -254,6 +254,7 @@ export interface Game {
   date: string;
   time: string;
   venue: string;
+  league?: string;
   score?: string | null;
   status: 'scheduled' | 'live' | 'finished';
 }
