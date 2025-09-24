@@ -54,10 +54,11 @@ The application requires the following Firebase configuration variables:
 
 ## Deployment
 - Configured for Replit autoscale deployment
-- Build command: `cd Passa-Bola && npm run build` (fixed to run from correct directory)
-- Preview command: `cd Passa-Bola && npm run preview` (fixed to run from correct directory)
+- Build command: `sh -c "cd Passa-Bola && npm run build"` (fixed to run from correct directory)
+- Preview command: `sh -c "cd Passa-Bola && npm run preview"` (fixed to run from correct directory)
 - Optimized for static site deployment
 - **Fixed**: Deployment commands now correctly navigate to project subdirectory
+- ✅ Build tested successfully - generates optimized production files in dist/
 
 ## Notes
 - The application is ready to run but will need Firebase configuration to be fully functional
