@@ -25,12 +25,12 @@ const featuredStories = [
     id: '1',
     playerId: 'marta-silva',
     playerName: 'Marta Silva',
-    playerAvatar: '/attached_assets/stock_images/female_soccer_player_723802db.jpg',
+    playerAvatar: '/attached_assets/stock_images/women_soccer_players_c153866f.jpg',
     playerPosition: 'Atacante',
     playerTeam: 'Orlando Pride',
     storyTitle: 'A Jornada de Marta: De Dois Riachos ao Mundial',
     storyContent: 'Conheça a história inspiradora da maior jogadora de futebol feminino de todos os tempos, desde seus primeiros chutes no interior de Alagoas até se tornar embaixadora global do esporte.',
-    storyImage: '/attached_assets/stock_images/female_soccer_player_dc3251f1.jpg',
+    storyImage: '/attached_assets/stock_images/football_stadium_soc_c75b2f5f.jpg',
     publishedAt: '2024-03-20T10:00:00Z',
     likes: 1247,
     comments: 89,
@@ -42,12 +42,12 @@ const featuredStories = [
     id: '2', 
     playerId: 'debinha',
     playerName: 'Debinha',
-    playerAvatar: '/attached_assets/stock_images/female_soccer_player_1a88cd86.jpg',
+    playerAvatar: '/attached_assets/stock_images/women_soccer_players_5b7250b8.jpg',
     playerPosition: 'Meia',
     playerTeam: 'North Carolina Courage',
     storyTitle: 'Debinha e a Nova Geração: Preparação para Paris 2024',
     storyContent: 'A meia-atacante fala sobre os preparativos da Seleção Brasileira para os Jogos Olímpicos de Paris e suas expectativas para a competição.',
-    storyImage: '/attached_assets/stock_images/womens_football_team_07fd50e0.jpg',
+    storyImage: '/attached_assets/stock_images/women_soccer_players_662cb026.jpg',
     publishedAt: '2024-03-19T14:30:00Z',
     likes: 856,
     comments: 42,
@@ -69,7 +69,7 @@ const todaysHighlights = [
     type: 'match' as const,
     title: 'Corinthians x Palmeiras - Hoje às 19h',
     subtitle: 'Clássico Paulista pelo Brasileirão Feminino',
-    image: '/attached_assets/stock_images/female_soccer_player_45b5d9ba.jpg',
+    image: '/attached_assets/stock_images/football_stadium_soc_ed3f8321.jpg',
     badge: 'Ao Vivo em 2h',
     badgeVariant: 'live' as const
   },
@@ -77,7 +77,7 @@ const todaysHighlights = [
     type: 'achievement' as const,
     title: 'Gabi Portilho: Artilheira do Mês',
     subtitle: '8 gols em 5 partidas pelo Corinthians',
-    image: '/attached_assets/stock_images/female_soccer_player_b8126497.jpg',
+    image: '/attached_assets/stock_images/women_soccer_players_91702f6c.jpg',
     badge: 'Conquista',
     badgeVariant: 'success' as const
   },
@@ -85,7 +85,7 @@ const todaysHighlights = [
     type: 'community' as const,
     title: 'Campanha #PassaABola',
     subtitle: '10mil compartilhamentos em 24h',
-    image: '/attached_assets/stock_images/womens_football_team_31b3dc01.jpg',
+    image: '/attached_assets/stock_images/women_soccer_players_4ab20e2b.jpg',
     badge: 'Trending',
     badgeVariant: 'info' as const
   }
@@ -96,7 +96,7 @@ const recentPlayers = [
     name: 'Tamires',
     team: 'Corinthians',
     position: 'Lateral-Esquerda',
-    avatar: '/attached_assets/stock_images/female_soccer_player_2a3847ee.jpg',
+    avatar: '/attached_assets/stock_images/women_soccer_players_4ab20e2b.jpg',
     rating: 8.7,
     trending: true
   },
@@ -104,7 +104,7 @@ const recentPlayers = [
     name: 'Ary Borges',
     team: 'Racing Louisville',
     position: 'Volante',
-    avatar: '/attached_assets/stock_images/female_soccer_player_1a88cd86.jpg',
+    avatar: '/attached_assets/stock_images/women_soccer_players_662cb026.jpg',
     rating: 8.4,
     trending: false
   },
@@ -112,7 +112,7 @@ const recentPlayers = [
     name: 'Antônia',
     team: 'Levante',
     position: 'Atacante',
-    avatar: '/attached_assets/stock_images/female_soccer_player_723802db.jpg',
+    avatar: '/attached_assets/stock_images/women_soccer_players_c153866f.jpg',
     rating: 8.9,
     trending: true
   }
