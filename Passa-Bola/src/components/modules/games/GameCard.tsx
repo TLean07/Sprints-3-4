@@ -129,98 +129,86 @@ const GameCard = ({ game }: { game: Game }) => {
         </div>
 
         {/* Teams and Score */}
-        <div className="space-y-4">
+        <div className="flex items-center justify-between">
           {/* Home Team */}
           <motion.div 
             whileHover={{ x: 2 }}
-            className="flex items-center justify-between group"
+            className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden"
           >
-            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden">
-              <div className="relative flex-shrink-0">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
-                  <img 
-                    src={game.homeTeamLogo} 
-                    alt={game.homeTeam} 
-                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain" 
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling!.textContent = game.homeTeam.charAt(0).toUpperCase();
-                    }}
-                  />
-                  <span className="hidden text-sm font-bold text-primary-600"></span>
-                </div>
-                {game.status === 'live' && (
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
-                )}
+            <div className="relative flex-shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
+                <img 
+                  src={game.homeTeamLogo} 
+                  alt={game.homeTeam} 
+                  className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain" 
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling!.textContent = game.homeTeam.charAt(0).toUpperCase();
+                  }}
+                />
+                <span className="hidden text-sm font-bold text-primary-600"></span>
               </div>
-              <div className="flex-1 min-w-0 overflow-hidden">
-                <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
-                  {game.homeTeam.replace(' Feminino', '')}
-                </p>
-                <p className="text-xs text-gray-500 font-medium">Casa</p>
-              </div>
+              {game.status === 'live' && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+              )}
             </div>
-            
-            <div className="text-right ml-1 sm:ml-2 md:ml-4 flex-shrink-0">
-              <motion.p 
-                whileHover={{ scale: 1.1 }}
-                className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
-              >
-                {game.score ? game.score.split('-')[0] : '-'}
-              </motion.p>
+            <div className="flex-1 min-w-0 overflow-hidden">
+              <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
+                {game.homeTeam.replace(' Feminino', '')}
+              </p>
+              <p className="text-xs text-gray-500 font-medium">Casa</p>
             </div>
           </motion.div>
 
-          {/* VS Divider */}
-          <div className="flex items-center justify-center py-2">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          {/* Score Section - Vertical Stack */}
+          <div className="flex flex-col items-center justify-center mx-2 sm:mx-3 md:mx-4 flex-shrink-0 min-w-0">
+            <motion.p 
+              whileHover={{ scale: 1.1 }}
+              className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent leading-none"
+            >
+              {game.score ? game.score.split('-')[0] : '-'}
+            </motion.p>
             <motion.div 
               whileHover={{ scale: 1.1, rotate: 180 }}
-              className="mx-2 sm:mx-4 px-2 sm:px-3 py-1 bg-gradient-to-r from-primary-100 to-pink-100 text-primary-600 rounded-full text-xs font-bold border border-primary-200"
+              className="my-1 px-1.5 py-0.5 bg-gradient-to-r from-primary-100 to-pink-100 text-primary-600 rounded-full text-xs font-bold border border-primary-200"
             >
               VS
             </motion.div>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            <motion.p 
+              whileHover={{ scale: 1.1 }}
+              className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent leading-none"
+            >
+              {game.score ? game.score.split('-')[1] : '-'}
+            </motion.p>
           </div>
 
           {/* Away Team */}
           <motion.div 
             whileHover={{ x: -2 }}
-            className="flex items-center justify-between group"
+            className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden"
           >
-            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden">
-              <div className="relative flex-shrink-0">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
-                  <img 
-                    src={game.awayTeamLogo} 
-                    alt={game.awayTeam} 
-                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain" 
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling!.textContent = game.awayTeam.charAt(0).toUpperCase();
-                    }}
-                  />
-                  <span className="hidden text-sm font-bold text-primary-600"></span>
-                </div>
-                {game.status === 'live' && (
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0 overflow-hidden">
-                <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
-                  {game.awayTeam.replace(' Feminino', '')}
-                </p>
-                <p className="text-xs text-gray-500 font-medium">Visitante</p>
-              </div>
+            <div className="flex-1 min-w-0 overflow-hidden text-right">
+              <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
+                {game.awayTeam.replace(' Feminino', '')}
+              </p>
+              <p className="text-xs text-gray-500 font-medium">Visitante</p>
             </div>
-            
-            <div className="text-right ml-1 sm:ml-2 md:ml-4 flex-shrink-0">
-              <motion.p 
-                whileHover={{ scale: 1.1 }}
-                className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
-              >
-                {game.score ? game.score.split('-')[1] : '-'}
-              </motion.p>
+            <div className="relative flex-shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
+                <img 
+                  src={game.awayTeamLogo} 
+                  alt={game.awayTeam} 
+                  className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain" 
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling!.textContent = game.awayTeam.charAt(0).toUpperCase();
+                  }}
+                />
+                <span className="hidden text-sm font-bold text-primary-600"></span>
+              </div>
+              {game.status === 'live' && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+              )}
             </div>
           </motion.div>
         </div>

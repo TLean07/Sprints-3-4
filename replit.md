@@ -43,6 +43,7 @@ The application requires the following Firebase configuration variables:
 - **Mobile-First Fixes**: Implemented aggressive mobile-first responsive sizing to prevent content bleeding
 - **Card Components**: Reduced font sizes, container dimensions, and spacing specifically for mobile viewports
 - **Responsive Design**: All breakpoints properly configured (xs → sm → md → lg) with desktop quality preserved
+- **Score Layout Fix**: Transformed GameCard score display from horizontal to vertical stack to prevent mobile overflow
 
 ## User Preferences
 - Portuguese language interface
