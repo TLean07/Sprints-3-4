@@ -39,14 +39,13 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
           {...props}
         >
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3 flex-1">
+            <div className="flex items-center space-x-3 flex-1 w-0">
               <Avatar src={match.homeTeam.logo} alt={match.homeTeam.name} size="sm" />
               <span className="font-medium text-gray-900 text-sm truncate">
                 {match.homeTeam.shortName}
               </span>
             </div>
             
-            {/* Score or Time */}
             <div className="flex items-center px-3">
               {match.score ? (
                 <span className={cn(
@@ -62,7 +61,7 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
               )}
             </div>
             
-            <div className="flex items-center space-x-3 flex-1 justify-end">
+            <div className="flex items-center space-x-3 flex-1 w-0 justify-end">
               <span className="font-medium text-gray-900 text-sm truncate">
                 {match.awayTeam.shortName}
               </span>
@@ -70,7 +69,6 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
             </div>
           </div>
           
-          {/* Status */}
           <div className="mt-3 flex items-center justify-center">
             <Badge variant={statusColor as any} size="sm">
               {statusLabel}
@@ -92,7 +90,6 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
         )}
         {...props}
       >
-        {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <img 
@@ -114,10 +111,8 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
           </Badge>
         </div>
 
-        {/* Teams and Score */}
-        <div className="flex items-center justify-between mb-4">
-          {/* Home Team */}
-          <div className="flex items-center space-x-3 flex-1">
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <div className="flex items-center space-x-3 flex-1 w-0">
             <Avatar 
               src={match.homeTeam.logo} 
               alt={match.homeTeam.name} 
@@ -134,8 +129,7 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
             </div>
           </div>
 
-          {/* Score */}
-          <div className="flex-shrink-0 text-center px-4">
+          <div className="flex-shrink-0 text-center px-2">
             {match.score ? (
               <div>
                 <div className={cn(
@@ -163,8 +157,7 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
             )}
           </div>
 
-          {/* Away Team */}
-          <div className="flex items-center space-x-3 flex-1 justify-end">
+          <div className="flex items-center space-x-3 flex-1 w-0 justify-end">
             <div className="min-w-0 flex-1 text-right">
               <h3 className="font-semibold text-gray-900 truncate">
                 {match.awayTeam.shortName}
@@ -182,7 +175,6 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
           </div>
         </div>
 
-        {/* Win Probability - Enhanced */}
         {showProbability && match.winProbability && (
           <div className="mb-4">
             <WinProbabilityChart 
@@ -192,7 +184,6 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
           </div>
         )}
 
-        {/* Live Match Data */}
         {isLive && match.liveData && (
           <div className="mb-4">
             <LiveMatchIndicator 
@@ -203,7 +194,6 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
           </div>
         )}
 
-        {/* Match Info */}
         <div className="flex items-center justify-between text-xs text-gray-500 pt-3 border-t border-gray-100">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">

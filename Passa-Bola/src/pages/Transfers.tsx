@@ -43,7 +43,6 @@ interface PlayerTransfer {
   };
 }
 
-// Dados realistas de transferências do futebol feminino brasileiro
 const mockTransfers: PlayerTransfer[] = [
   {
     id: '1',
@@ -180,7 +179,6 @@ export default function TransfersPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Simular carregamento de dados
     const loadTransfers = async () => {
       setLoading(true);
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -195,12 +193,10 @@ export default function TransfersPage() {
   useEffect(() => {
     let filtered = transfers;
 
-    // Filtro por categoria
     if (activeFilter !== 'all') {
       filtered = filtered.filter(transfer => transfer.category === activeFilter);
     }
 
-    // Filtro por busca
     if (searchQuery) {
       filtered = filtered.filter(transfer => 
         transfer.playerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -223,18 +219,15 @@ export default function TransfersPage() {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="px-4 py-6">
-          {/* Header skeleton */}
           <div className="mb-6">
             <div className="h-8 bg-gray-200 rounded-lg w-48 mb-2 animate-pulse" />
             <div className="h-4 bg-gray-200 rounded w-64 animate-pulse" />
           </div>
 
-          {/* Stats skeleton */}
           <div className="mb-6">
             <div className="h-32 bg-gray-200 rounded-xl animate-pulse" />
           </div>
 
-          {/* Transfer cards skeleton */}
           <div className="space-y-4">
             {[1, 2, 3].map(i => (
               <div key={i} className="bg-white rounded-xl p-6 shadow-card">
@@ -258,7 +251,6 @@ export default function TransfersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="px-4 py-6 pb-20 lg:pb-6">
-        {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Mercado de Transferências
@@ -268,7 +260,6 @@ export default function TransfersPage() {
           </p>
         </div>
 
-        {/* Market Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -293,7 +284,6 @@ export default function TransfersPage() {
           />
         </motion.div>
 
-        {/* Search and Filters */}
         <div className="mb-6 space-y-4">
           <div className="flex items-center space-x-2">
             <div className="relative flex-1">
@@ -311,7 +301,6 @@ export default function TransfersPage() {
             </button>
           </div>
 
-          {/* Category Tabs */}
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="w-full justify-start overflow-x-auto">
               <TabsTrigger 
@@ -344,7 +333,6 @@ export default function TransfersPage() {
           </Tabs>
         </div>
 
-        {/* Transfers List */}
         <AnimatePresence mode="wait">
           {filteredTransfers.length === 0 ? (
             <motion.div
@@ -393,7 +381,6 @@ export default function TransfersPage() {
                   )}
                 >
                   <div className="flex items-start space-x-4">
-                    {/* Player Avatar */}
                     <div className="relative flex-shrink-0">
                       <Avatar
                         src={transfer.playerAvatar}
@@ -406,14 +393,13 @@ export default function TransfersPage() {
                       </div>
                     </div>
 
-                    {/* Transfer Details */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between mb-3">
                         <div>
                           <h3 className="text-xl font-bold text-gray-900 mb-1">
                             {transfer.playerName}
                           </h3>
-                          <div className="flex items-center space-x-3 text-sm text-gray-500">
+                          <div className="flex flex-wrap items-center gap-x-3 text-sm text-gray-500">
                             <span>{transfer.position}</span>
                             <span>•</span>
                             <span>{transfer.age} anos</span>
@@ -425,60 +411,56 @@ export default function TransfersPage() {
                         <Badge 
                           variant={getStatusColor(transfer.status) as any}
                           size="sm"
+                          className="flex-shrink-0"
                         >
                           {transfer.status === 'confirmed' ? 'Confirmada' : 
                            transfer.status === 'negotiating' ? 'Negociando' : 'Rumor'}
                         </Badge>
                       </div>
-
-                      {/* Transfer Direction */}
-                      <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                        <div className="flex items-center justify-between">
-                          {/* From Club */}
-                          <div className="flex items-center space-x-3">
+                      
+                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4">
+                        <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-2 sm:gap-3">
+                          <div className="flex items-center gap-2 min-w-0">
                             <img
                               src={transfer.fromClubLogo}
                               alt={transfer.fromClub}
-                              className="w-8 h-8 rounded"
+                              className="w-8 h-8 rounded flex-shrink-0"
                             />
-                            <div>
-                              <div className="font-semibold text-gray-900 text-sm">
+                            <div className="min-w-0">
+                              <p className="font-semibold text-gray-900 text-sm leading-tight">
                                 {transfer.fromClub}
-                              </div>
-                              <div className="text-xs text-gray-500">Origem</div>
+                              </p>
+                              <p className="text-xs text-gray-500">Origem</p>
                             </div>
                           </div>
 
-                          {/* Arrow */}
-                          <div className="flex items-center space-x-2 px-4">
+                          <div className="flex flex-col items-center pt-1">
                             <ArrowRight className="w-5 h-5 text-primary-500" />
-                            <Badge variant="outlined" size="sm">
+                            <Badge variant="outlined" size="sm" className="mt-1 whitespace-nowrap">
                               {getTransferTypeLabel(transfer.transferType)}
                             </Badge>
                           </div>
-
-                          {/* To Club */}
-                          <div className="flex items-center space-x-3">
-                            <img
-                              src={transfer.toClubLogo}
-                              alt={transfer.toClub}
-                              className="w-8 h-8 rounded"
-                            />
-                            <div>
-                              <div className="font-semibold text-gray-900 text-sm">
+                          
+                          <div className="flex items-center gap-2 min-w-0 justify-end">
+                            <div className="min-w-0 text-right">
+                              <p className="font-semibold text-gray-900 text-sm leading-tight">
                                 {transfer.toClub}
-                              </div>
-                              <div className="text-xs text-gray-500">Destino</div>
+                              </p>
+                              <p className="text-xs text-gray-500">Destino</p>
                             </div>
+                             <img
+                                src={transfer.toClubLogo}
+                                alt={transfer.toClub}
+                                className="w-8 h-8 rounded flex-shrink-0"
+                            />
                           </div>
                         </div>
                       </div>
 
-                      {/* Transfer Info */}
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                         <div>
                           <div className="text-gray-500 mb-1">Valor</div>
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 truncate">
                             {formatTransferValue(transfer.transferValue)}
                           </div>
                         </div>
@@ -486,7 +468,7 @@ export default function TransfersPage() {
                         {transfer.contractLength && (
                           <div>
                             <div className="text-gray-500 mb-1">Contrato</div>
-                            <div className="font-semibold text-gray-900">
+                            <div className="font-semibold text-gray-900 truncate">
                               {transfer.contractLength}
                             </div>
                           </div>
@@ -494,20 +476,19 @@ export default function TransfersPage() {
                         
                         <div>
                           <div className="text-gray-500 mb-1">Valor de Mercado</div>
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 truncate">
                             {formatTransferValue(transfer.marketValue)}
                           </div>
                         </div>
                         
                         <div>
                           <div className="text-gray-500 mb-1">Anunciado</div>
-                          <div className="font-semibold text-gray-900">
+                          <div className="font-semibold text-gray-900 truncate">
                             {new Date(transfer.announcedDate).toLocaleDateString('pt-BR')}
                           </div>
                         </div>
                       </div>
 
-                      {/* Previous Season Stats */}
                       {transfer.previousSeasonStats && (
                         <div className="mt-4 pt-4 border-t border-gray-100">
                           <div className="text-sm text-gray-500 mb-2">Temporada Anterior</div>

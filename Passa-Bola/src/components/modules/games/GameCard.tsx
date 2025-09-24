@@ -57,10 +57,8 @@ const GameCard = ({ game }: { game: Game }) => {
       whileTap={{ scale: 0.98 }}
       className={`relative bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 shadow-card border border-white/50 hover:shadow-2xl hover:bg-white/90 transition-all duration-300 cursor-pointer overflow-hidden ${game.status === 'live' ? 'ring-2 ring-red-400/20' : ''}`}
     >
-      {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-pink-50/50 rounded-3xl" />
       
-      {/* Live Glow Effect */}
       {game.status === 'live' && (
         <>
           <motion.div
@@ -94,7 +92,6 @@ const GameCard = ({ game }: { game: Game }) => {
       )}
 
       <div className="relative z-10">
-        {/* Header */}
         <div className="flex justify-between items-start mb-6">
           <div className="flex items-center space-x-2">
             <div className="p-2 bg-white/60 rounded-xl backdrop-blur-sm">
@@ -128,12 +125,10 @@ const GameCard = ({ game }: { game: Game }) => {
           </motion.div>
         </div>
 
-        {/* Teams and Score */}
-        <div className="flex items-center justify-between">
-          {/* Home Team */}
+        <div className="flex items-center justify-between gap-2">
           <motion.div 
             whileHover={{ x: 2 }}
-            className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden"
+            className="flex items-center space-x-2 sm:space-x-3 flex-1 w-0"
           >
             <div className="relative flex-shrink-0">
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-card group-hover:shadow-card-hover transition-shadow border border-gray-100">
@@ -152,7 +147,7 @@ const GameCard = ({ game }: { game: Game }) => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
               )}
             </div>
-            <div className="flex-1 min-w-0 overflow-hidden">
+            <div className="flex-1 min-w-0">
               <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
                 {game.homeTeam.replace(' Feminino', '')}
               </p>
@@ -160,8 +155,7 @@ const GameCard = ({ game }: { game: Game }) => {
             </div>
           </motion.div>
 
-          {/* Score Section - Vertical Stack */}
-          <div className="flex flex-col items-center justify-center mx-2 sm:mx-3 md:mx-4 flex-shrink-0 min-w-0">
+          <div className="flex flex-col items-center justify-center flex-shrink-0">
             <motion.p 
               whileHover={{ scale: 1.1 }}
               className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent leading-none"
@@ -182,12 +176,11 @@ const GameCard = ({ game }: { game: Game }) => {
             </motion.p>
           </div>
 
-          {/* Away Team */}
           <motion.div 
             whileHover={{ x: -2 }}
-            className="flex items-center space-x-2 sm:space-x-3 flex-1 overflow-hidden"
+            className="flex items-center space-x-2 sm:space-x-3 flex-1 w-0 justify-end"
           >
-            <div className="flex-1 min-w-0 overflow-hidden text-right">
+            <div className="flex-1 min-w-0 text-right">
               <p className="font-bold text-gray-900 truncate text-xs sm:text-sm md:text-base group-hover:text-primary-600 transition-colors">
                 {game.awayTeam.replace(' Feminino', '')}
               </p>
@@ -213,7 +206,6 @@ const GameCard = ({ game }: { game: Game }) => {
           </motion.div>
         </div>
 
-        {/* Stadium Info & Stats */}
         <div className="mt-6 pt-4 border-t border-gradient-to-r from-transparent via-gray-200 to-transparent">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
