@@ -10,7 +10,9 @@ export default defineConfig({
       'localhost',
       '127.0.0.1',
       '.replit.dev',
-      '.repl.co'
+      '.repl.co',
+      '.replit.app',
+      'sprints-3-4-leandroafonsosi.replit.app'
     ],
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -27,7 +29,9 @@ export default defineConfig({
       'localhost',
       '127.0.0.1',
       '.replit.dev',
-      '.repl.co'
+      '.repl.co',
+      '.replit.app',
+      'sprints-3-4-leandroafonsosi.replit.app'
     ],
     headers: {
       'Access-Control-Allow-Origin': '*',

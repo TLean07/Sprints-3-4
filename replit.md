@@ -59,6 +59,7 @@ The application requires the following Firebase configuration variables:
 - Optimized for static site deployment
 - **Fixed**: Deployment commands now correctly navigate to project subdirectory
 - **Fixed**: Vite preview configured to serve on port 5000 with strictPort for deployment
+- **Fixed**: Added Replit app domain to allowedHosts for deployment access
 - ✅ Build tested successfully - generates optimized production files in dist/
 
 ## Notes
