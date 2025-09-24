@@ -23,20 +23,20 @@ const GameCard = ({ game }: { game: Game }) => {
       </div>
 
       <div className="flex-grow space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 flex-1 min-w-0">
-            <img src={game.homeTeamLogo} alt={game.homeTeam} className="w-8 h-8 object-contain" />
-            <span className="font-bold text-dark-text truncate font-heading">{game.homeTeam}</span>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 flex-1 min-w-0 overflow-hidden">
+            <img src={game.homeTeamLogo} alt={game.homeTeam} className="w-8 h-8 object-contain flex-shrink-0" />
+            <span className="font-bold text-dark-text truncate font-heading text-sm">{game.homeTeam}</span>
           </div>
-          <span className="font-bold text-2xl text-pink-600 font-heading">{game.score ? game.score.split('-')[0] : ''}</span>
+          <span className="font-bold text-xl text-pink-600 font-heading flex-shrink-0">{game.score ? game.score.split('-')[0] : ''}</span>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 flex-1 min-w-0">
-            <img src={game.awayTeamLogo} alt={game.awayTeam} className="w-8 h-8 object-contain" />
-            <span className="font-bold text-dark-text truncate font-heading">{game.awayTeam}</span>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 flex-1 min-w-0 overflow-hidden">
+            <img src={game.awayTeamLogo} alt={game.awayTeam} className="w-8 h-8 object-contain flex-shrink-0" />
+            <span className="font-bold text-dark-text truncate font-heading text-sm">{game.awayTeam}</span>
           </div>
-          <span className="font-bold text-2xl text-pink-600 font-heading">{game.score ? game.score.split('-')[1] : ''}</span>
+          <span className="font-bold text-xl text-pink-600 font-heading flex-shrink-0">{game.score ? game.score.split('-')[1] : ''}</span>
         </div>
       </div>
       

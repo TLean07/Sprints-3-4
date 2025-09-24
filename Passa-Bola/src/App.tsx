@@ -12,6 +12,8 @@ import NewsPage from './pages/News';
 import MatchesPage from './pages/MatchesPage';
 import TransfersPage from './pages/Transfers';
 import ChampionshipSignupPage from './pages/ChampionshipSignup';
+import SettingsPage from './pages/SettingsPage';
+import PasswordResetPage from './pages/PasswordResetPage';
 
 function App() {
   return (
@@ -40,7 +42,10 @@ function App() {
             
             <Route element={<ProtectedRoute />}>
               <Route path="/perfil" element={<ProfilePage />} />
+              <Route path="/configuracoes" element={<SettingsPage />} />
             </Route>
+            
+            <Route path="/redefinir-senha" element={<PasswordResetPage />} />
           </Route>
           
           <Route path="*" element={<NotFoundPage />} />
