@@ -39,6 +39,10 @@ The application requires the following Firebase configuration variables:
 - Set up Frontend Server workflow on port 5000
 - Configured deployment for production with autoscale target
 - Created development environment ready for use
+- **Latest**: Fixed critical mobile overflow issues in GameCard and TransferCard components
+- **Mobile-First Fixes**: Implemented aggressive mobile-first responsive sizing to prevent content bleeding
+- **Card Components**: Reduced font sizes, container dimensions, and spacing specifically for mobile viewports
+- **Responsive Design**: All breakpoints properly configured (xs → sm → md → lg) with desktop quality preserved
 
 ## User Preferences
 - Portuguese language interface
