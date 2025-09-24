@@ -233,7 +233,7 @@ export default function Home() {
           <div className="flex justify-center space-x-2 mt-4">
             {featuredStories.map((_, index) => (
               <button
-                key={index}
+                key={`story-indicator-${index}`}
                 onClick={() => setCurrentStory(index)}
                 className={cn(
                   'w-2 h-2 rounded-full transition-all duration-300',

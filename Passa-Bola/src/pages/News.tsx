@@ -49,7 +49,7 @@ interface NewsArticle {
 // Notícias realistas focadas no futebol feminino brasileiro
 const mockNews: NewsArticle[] = [
   {
-    id: '1',
+    id: 'news-mock-marta-aposentadoria-1',
     title: 'Marta Anuncia Aposentadoria da Seleção Brasileira Após Paris 2024',
     subtitle: 'A Rainha do Futebol se despedirá da camisa amarelinha nos Jogos Olímpicos',
     content: 'Em entrevista exclusiva, Marta confirmou que os Jogos Olímpicos de Paris 2024 serão sua última competição vestindo a camisa da Seleção Brasileira...',
@@ -75,7 +75,7 @@ const mockNews: NewsArticle[] = [
     }
   },
   {
-    id: '2',
+    id: 'news-mock-corinthians-palmeiras-2',
     title: 'Corinthians e Palmeiras Fazem Clássico Histórico Pelo Brasileirão Feminino',
     subtitle: 'Derby paulista promete emocionar 40 mil torcedores na Neo Química Arena',
     content: 'O clássico entre Corinthians e Palmeiras pela 15ª rodada do Brasileirão Feminino promete ser um dos jogos mais importantes da temporada...',
@@ -96,7 +96,7 @@ const mockNews: NewsArticle[] = [
     }
   },
   {
-    id: '3',
+    id: 'news-mock-gabi-portilho-3',
     title: 'Gabi Portilho: A Nova Estrela do Futebol Feminino Brasileiro',
     subtitle: 'Perfil da atacante que conquistou o coração da torcida corinthiana',
     content: 'Aos 26 anos, Gabi Portilho se estabeleceu como uma das principais atacantes do futebol feminino brasileiro...',
@@ -122,7 +122,7 @@ const mockNews: NewsArticle[] = [
     }
   },
   {
-    id: '4',
+    id: 'news-mock-copa-america-4',
     title: 'CBF Anuncia Investimento de R$ 50 Mi no Futebol Feminino',
     subtitle: 'Recursos serão destinados à base, infraestrutura e profissionalização',
     content: 'A Confederação Brasileira de Futebol anunciou hoje o maior investimento da história no futebol feminino nacional...',
@@ -211,7 +211,12 @@ export default function NewsPage() {
           }));
           
           // Combina notícias reais com algumas notícias mock para variedade
-          const combinedNews = [...convertedRealNews, ...mockNews.slice(0, 3)];
+          // Remove duplicatas baseado no ID
+          const mockNewsToAdd = mockNews.slice(0, 3).filter(mock => 
+            !convertedRealNews.some(real => real.id === mock.id)
+          );
+          
+          const combinedNews = [...convertedRealNews, ...mockNewsToAdd];
           setNews(combinedNews);
           setFilteredNews(combinedNews);
         } else {
@@ -466,7 +471,7 @@ export default function NewsPage() {
             >
               {regularArticles.map((article, index) => (
                 <motion.div
-                  key={article.id}
+                  key={`news-article-${article.id}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}

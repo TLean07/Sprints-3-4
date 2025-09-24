@@ -286,7 +286,7 @@ const GamesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredGames.map((game, index) => (
                 <motion.div
-                  key={game.id}
+                  key={`games-card-${game.id}-${index}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}

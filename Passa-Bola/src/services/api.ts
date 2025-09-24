@@ -33,7 +33,7 @@ interface NewsAPIResponse {
 // Notícias reais e atuais sobre futebol feminino brasileiro
 const mockNewsData: NewsArticle[] = [
   {
-    id: '1',
+    id: 'mock-corinthians-sp-1',
     title: 'Corinthians vence São Paulo por 3x1 no Brasileirão Feminino',
     excerpt: 'Com hat-trick de Gabi Portilho, as Brabas conquistaram mais três pontos importantes na competição nacional.',
     imageUrl: '/attached_assets/stock_images/womens_football_team_07fd50e0.jpg',
@@ -42,7 +42,7 @@ const mockNewsData: NewsArticle[] = [
     content: 'O Corinthians venceu o São Paulo por 3x1 neste domingo, no estádio do Canindé, em partida válida pela 15ª rodada do Brasileirão Feminino. Gabi Portilho foi a grande estrela da partida, marcando três gols e liderando a vitória das Brabas.'
   },
   {
-    id: '2', 
+    id: 'mock-marta-olympics-2', 
     title: 'Marta confirma presença nos Jogos Olímpicos de Paris 2024',
     excerpt: 'A Rainha do futebol mundial confirmou sua participação na competição olímpica, que pode ser sua despedida dos Jogos.',
     imageUrl: '/attached_assets/stock_images/female_soccer_player_dc3251f1.jpg',
@@ -51,7 +51,7 @@ const mockNewsData: NewsArticle[] = [
     content: 'Marta, aos 38 anos, confirmou sua presença na delegação brasileira para os Jogos Olímpicos de Paris 2024. A atacante busca sua primeira medalha olímpica na carreira.'
   },
   {
-    id: '3',
+    id: 'mock-palmeiras-bia-3',
     title: 'Palmeiras anuncia contratação de Bia Zaneratto',
     excerpt: 'A atacante da Seleção Brasileira assinou contrato de dois anos com o Verdão e reforça o time para a temporada.',
     imageUrl: '/attached_assets/stock_images/female_soccer_player_b8126497.jpg', 
@@ -60,7 +60,7 @@ const mockNewsData: NewsArticle[] = [
     content: 'Bia Zaneratto é a nova contratação do Palmeiras para a temporada 2024. A atacante chega para reforçar o setor ofensivo das Palestrinas.'
   },
   {
-    id: '4',
+    id: 'mock-copa-brasil-4',
     title: 'Copa do Brasil Feminina: semifinais definidas',
     excerpt: 'Corinthians, Palmeiras, Flamengo e Internacional disputarão as semifinais da competição nacional.',
     imageUrl: '/attached_assets/stock_images/female_soccer_player_45b5d9ba.jpg',
@@ -69,7 +69,7 @@ const mockNewsData: NewsArticle[] = [
     content: 'As semifinais da Copa do Brasil Feminina estão definidas. Os jogos acontecerão nos próximos finais de semana.'
   },
   {
-    id: '5',
+    id: 'mock-debinha-melhor-5',
     title: 'Debinha eleita melhor jogadora da rodada no Brasileirão',
     excerpt: 'A meia do North Carolina Courage e da Seleção Brasileira foi destaque na vitória por 2x0 sobre o Avaí.',
     imageUrl: '/attached_assets/stock_images/female_soccer_player_1a88cd86.jpg',
@@ -78,7 +78,7 @@ const mockNewsData: NewsArticle[] = [
     content: 'Debinha foi escolhida a melhor jogadora da 14ª rodada do Brasileirão Feminino após excelente atuação.'
   },
   {
-    id: '6',
+    id: 'mock-santos-ct-6',
     title: 'Santos Feminino investe em centro de treinamento exclusivo',
     excerpt: 'Clube da Baixada Santista anuncia investimento de R$ 5 milhões em novo CT para o time feminino.',
     imageUrl: '/attached_assets/stock_images/womens_football_team_07fd50e0.jpg',
