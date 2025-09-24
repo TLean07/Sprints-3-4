@@ -55,7 +55,7 @@ const GameCard = ({ game }: { game: Game }) => {
         transition: { duration: 0.2 }
       }}
       whileTap={{ scale: 0.98 }}
-      className={`relative bg-white/80 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-card border border-white/50 hover:shadow-2xl hover:bg-white/90 transition-all duration-300 cursor-pointer ${game.status === 'live' ? 'ring-2 ring-red-400/20' : ''}`}
+      className={`relative bg-white/80 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-card border border-white/50 hover:shadow-2xl hover:bg-white/90 transition-all duration-300 cursor-pointer overflow-hidden ${game.status === 'live' ? 'ring-2 ring-red-400/20' : ''}`}
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-pink-50/50 rounded-3xl" />

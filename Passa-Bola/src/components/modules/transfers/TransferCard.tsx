@@ -18,19 +18,21 @@ const TransferCard = ({ transfer }: TransferCardProps) => {
       transition={{ duration: 0.8 }}
       className="h-full"
     >
-      <Card className="flex items-center gap-6 hover:shadow-2xl transition-shadow duration-300 p-6">
-        <img src={transfer.playerImageUrl} alt={transfer.playerName} className="w-24 h-24 rounded-full object-cover flex-shrink-0 border-4 border-gold-accent" />
-        <div className="flex-grow">
-          <h3 className="font-heading font-extrabold text-xl text-dark-text">{transfer.playerName}</h3>
-          <div className="flex items-center text-medium-gray text-sm mt-1">
-            <span>{transfer.oldClub}</span>
-            <ArrowRight size={18} className="mx-2 text-pink-600" />
-            <span>{transfer.newClub}</span>
+      <Card className="flex items-center gap-4 hover:shadow-2xl transition-shadow duration-300 p-4 md:p-6 overflow-hidden">
+        <div className="flex-shrink-0">
+          <img src={transfer.playerImageUrl} alt={transfer.playerName} className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-primary-200" />
+        </div>
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <h3 className="font-bold text-lg md:text-xl text-gray-900 truncate">{transfer.playerName}</h3>
+          <div className="flex items-center text-gray-600 text-sm mt-1 overflow-hidden">
+            <span className="truncate flex-shrink-0 max-w-24">{transfer.oldClub}</span>
+            <ArrowRight size={16} className="mx-2 text-primary-600 flex-shrink-0" />
+            <span className="truncate flex-shrink-0 max-w-24">{transfer.newClub}</span>
           </div>
-          <p className="text-sm mt-2 font-semibold">
-            <span className="text-purple-800">Taxa:</span> {transfer.fee || 'Não Divulgado'}
+          <p className="text-sm mt-2 font-semibold text-gray-700 truncate">
+            <span className="text-primary-600">Taxa:</span> {transfer.fee || 'Não Divulgado'}
           </p>
-          <p className={`text-xs mt-1 font-semibold ${statusColor}`}>
+          <p className={`text-xs mt-1 font-semibold truncate ${statusColor}`}>
             {transfer.status === 'confirmed' ? 'Confirmado' : 'Rumor'} em {transfer.date}
           </p>
         </div>
