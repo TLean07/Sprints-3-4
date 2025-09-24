@@ -2,14 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthProvider';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
-import MainLayout from './components/layouts/MainLayout';
+import MobileLayout from './components/layouts/MobileLayout';
 
 import LoginPage from './pages/Login';
 import HomePage from './pages/Home';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFound';
 import NewsPage from './pages/News';
-import GamesPage from './pages/Games';
+import MatchesPage from './pages/MatchesPage';
 import TransfersPage from './pages/Transfers';
 import ChampionshipSignupPage from './pages/ChampionshipSignup';
 
@@ -17,14 +17,24 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Toaster position="top-right" />
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            duration: 4000,
+            className: 'font-medium',
+            style: {
+              borderRadius: '12px',
+              padding: '12px 16px',
+            },
+          }}
+        />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
 
-          <Route element={<MainLayout />}>
+          <Route element={<MobileLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/noticias" element={<NewsPage />} />
-            <Route path="/jogos" element={<GamesPage />} />
+            <Route path="/jogos" element={<MatchesPage />} />
             <Route path="/transferencias" element={<TransfersPage />} />
             <Route path="/inscrever-campeonato" element={<ChampionshipSignupPage />} />
             

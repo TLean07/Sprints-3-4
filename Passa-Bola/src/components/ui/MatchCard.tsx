@@ -3,6 +3,8 @@ import { Calendar, MapPin, Clock, TrendingUp } from 'lucide-react';
 import { cn, formatDate, formatTime, getMatchStatus } from '../../lib/utils';
 import { Avatar } from './Avatar';
 import { Badge } from './Badge';
+import { WinProbabilityChart } from './WinProbabilityChart';
+import { LiveMatchIndicator } from './LiveMatchIndicator';
 import type { Match } from '../../types';
 
 interface MatchCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -180,32 +182,24 @@ export const MatchCard = forwardRef<HTMLDivElement, MatchCardProps>(
           </div>
         </div>
 
-        {/* Win Probability */}
+        {/* Win Probability - Enhanced */}
         {showProbability && match.winProbability && (
           <div className="mb-4">
-            <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
-              <span>Probabilidade</span>
-              <TrendingUp className="w-3 h-3" />
-            </div>
-            <div className="flex space-x-1">
-              <div 
-                className="bg-win h-1 rounded-full"
-                style={{ width: `${match.winProbability.home}%` }}
-              />
-              <div 
-                className="bg-gray-300 h-1 rounded-full"
-                style={{ width: `${match.winProbability.draw}%` }}
-              />
-              <div 
-                className="bg-loss h-1 rounded-full"
-                style={{ width: `${match.winProbability.away}%` }}
-              />
-            </div>
-            <div className="flex justify-between text-2xs text-gray-500 mt-1">
-              <span>{match.winProbability.home}%</span>
-              <span>Empate {match.winProbability.draw}%</span>
-              <span>{match.winProbability.away}%</span>
-            </div>
+            <WinProbabilityChart 
+              probability={match.winProbability} 
+              variant="compact"
+            />
+          </div>
+        )}
+
+        {/* Live Match Data */}
+        {isLive && match.liveData && (
+          <div className="mb-4">
+            <LiveMatchIndicator 
+              liveData={match.liveData}
+              recentEvents={match.events?.slice(-2)}
+              variant="detailed"
+            />
           </div>
         )}
 
