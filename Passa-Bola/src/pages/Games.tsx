@@ -26,7 +26,7 @@ const mockGames: Game[] = [
     id: '1',
     homeTeam: 'Corinthians Feminino',
     awayTeam: 'Palmeiras Feminino',
-    homeTeamLogo: '/attached_assets/stock_images/soccer_club_logo_emb_27837489.jpg',
+    homeTeamLogo: 'https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png',
     awayTeamLogo: '/attached_assets/stock_images/soccer_club_logo_emb_688b9c9f.jpg',
     date: '24/09/2024',
     time: '16:00',
