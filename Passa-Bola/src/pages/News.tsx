@@ -170,10 +170,49 @@ export default function NewsPage() {
   useEffect(() => {
     const loadNews = async () => {
       setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setNews(mockNews);
-      setFilteredNews(mockNews);
-      setLoading(false);
+      try {
+        // Try to fetch from real API first
+        const { getNewsFromAPI } = await import('../services/api');
+        const realNews = await getNewsFromAPI();
+        
+        if (realNews && realNews.length > 0) {
+          // Convert real news to our format
+          const convertedNews = realNews.map((article, index): NewsArticle => ({
+            id: article.id,
+            title: article.title,
+            subtitle: article.excerpt.slice(0, 100) + '...',
+            content: article.content || article.excerpt,
+            excerpt: article.excerpt,
+            coverImage: article.imageUrl,
+            authorName: 'Equipe Passa a Bola',
+            authorAvatar: '/attached_assets/stock_images/beautiful_woman_foot_fc1a6e36.jpg',
+            publishedAt: new Date(article.date.split('/').reverse().join('-')).toISOString(),
+            readTime: Math.ceil(article.excerpt.length / 200) + Math.floor(Math.random() * 3) + 2,
+            category: index === 0 ? 'news' : ['news', 'interview', 'analysis', 'match-report'][Math.floor(Math.random() * 4)] as any,
+            tags: article.title.toLowerCase().includes('marta') ? ['Marta', 'Seleção'] :
+                  article.title.toLowerCase().includes('corinthians') ? ['Corinthians', 'Brasileirão'] :
+                  ['Futebol Feminino', 'Brasil'],
+            featured: index === 0,
+            trending: Math.random() > 0.6,
+            reactions: {
+              likes: Math.floor(Math.random() * 2000) + 500,
+              comments: Math.floor(Math.random() * 200) + 20,
+              shares: Math.floor(Math.random() * 150) + 10
+            }
+          }));
+          
+          setNews([...convertedNews, ...mockNews]);
+          setFilteredNews([...convertedNews, ...mockNews]);
+        } else {
+          throw new Error('No real news available');
+        }
+      } catch (error) {
+        console.log('Using mock data as fallback');
+        setNews(mockNews);
+        setFilteredNews(mockNews);
+      } finally {
+        setLoading(false);
+      }
     };
 
     loadNews();

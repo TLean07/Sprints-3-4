@@ -4,7 +4,7 @@ import { ref as dbRef, get, set, child, push } from "firebase/database";
 import { auth, storage, db } from "../lib/firebase";
 import type { NewsArticle, Game, Transfer } from "../types";
 
-const NEWSAPI_API_KEY = import.meta.env.VITE_NEWSAPI_API_KEY;
+const NEWSAPI_API_KEY = import.meta.env.VITE_NEWSAPI_API_KEY || '4eea2a9cc933469b9d72bbf074452732';
 
 interface SourceFromAPI {
   id: string | null;

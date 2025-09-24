@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { auth } from '../lib/firebase';
 import { useAuth } from '../hooks/useAuth';
-import { getUserProfileData, updateUserProfileData, uploadProfileImage } from '../services/userService';
+import { getUserProfileData, updateUserProfileData, uploadProfileImage } from '../services/api';
 import { Avatar } from '../components/ui/Avatar';
 import { Badge } from '../components/ui/Badge';
 import { StatsCard } from '../components/ui/StatsCard';
