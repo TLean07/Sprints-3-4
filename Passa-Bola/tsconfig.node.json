@@ -2,13 +2,14 @@
   "compilerOptions": {
     "composite": true,
     "skipLibCheck": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "outDir": "./dist",
     "noEmit": false,
     "strict": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["scripts/**/*.ts"]
+  "include": ["scripts/**/*.ts", "vite.config.ts"]
 }
