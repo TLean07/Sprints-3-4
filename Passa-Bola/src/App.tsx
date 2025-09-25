@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthProvider';
-import { CartProvider } from './contexts/CartContext'; // Importe o CartProvider
+import { CartProvider } from './contexts/CartContext';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import MobileLayout from './components/layouts/MobileLayout';
 
@@ -23,7 +23,7 @@ import ShopPage from './pages/ShopPage';
 function App() {
   return (
     <AuthProvider>
-      <CartProvider> {/* Envolva o Router com o CartProvider */}
+      <CartProvider>
         <Router>
           <Toaster 
             position="top-center"

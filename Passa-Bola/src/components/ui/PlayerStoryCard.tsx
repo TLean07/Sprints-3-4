@@ -147,7 +147,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
           )}
           {...props}
         >
-          {/* Hero Image */}
           <div className="relative h-48 overflow-hidden">
             <img 
               src={story.storyImage} 
@@ -156,7 +155,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             
-            {/* Featured Badge */}
             <div className="absolute top-4 right-4">
               <Badge variant="live" size="sm" className="bg-yellow-500">
                 <Star className="w-3 h-3 mr-1 fill-current" />
@@ -164,7 +162,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
               </Badge>
             </div>
             
-            {/* Category */}
             <div className="absolute top-4 left-4">
               <Badge 
                 variant="outlined" 
@@ -176,7 +173,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
             </div>
           </div>
 
-          {/* Content */}
           <div className="p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
               {story.storyTitle}
@@ -186,7 +182,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
               {story.storyContent}
             </p>
 
-            {/* Player Info */}
             <div className="flex items-center justify-between">
               <div 
                 className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 rounded-lg p-2 -m-2 transition-colors"
@@ -208,7 +203,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
                 </div>
               </div>
 
-              {/* Engagement */}
               <div className="flex items-center space-x-4">
                 <button className="flex items-center space-x-1 text-gray-500 hover:text-primary-600 transition-colors">
                   <Heart className="w-4 h-4" />
@@ -229,7 +223,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
       );
     }
 
-    // Default variant
     return (
       <div
         ref={ref}
@@ -241,7 +234,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
         )}
         {...props}
       >
-        {/* Story Image */}
         {story.storyImage && (
           <div className="relative h-40 overflow-hidden">
             <img 
@@ -275,7 +267,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
             {story.storyContent}
           </p>
 
-          {/* Player Info */}
           <div className="flex items-center justify-between">
             <div 
               className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 rounded-lg p-1 -m-1 transition-colors"
@@ -296,7 +287,6 @@ export const PlayerStoryCard = forwardRef<HTMLDivElement, PlayerStoryCardProps>(
               </div>
             </div>
 
-            {/* Quick Stats */}
             <div className="flex items-center space-x-3 text-sm text-gray-500">
               <div className="flex items-center space-x-1">
                 <Heart className="w-4 h-4" />

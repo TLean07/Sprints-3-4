@@ -22,36 +22,39 @@ import { cn } from '../lib/utils';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 
 const communityStats = [
-  { label: 'Jogadoras Cadastradas', value: 2847, change: 12, trend: 'up' as const },
-  { label: 'Torcedoras Ativas', value: 45620, change: 8, trend: 'up' as const },
-  { label: 'Clubes Parceiros', value: 127, change: 5, trend: 'up' as const },
-  { label: 'Histórias Publicadas', value: 892, change: 15, trend: 'up' as const }
+  { label: 'Jogadoras Cadastradas', value: 2847, change: 12, trend: 'up' },
+  { label: 'Torcedoras Ativas', value: 45620, change: 8, trend: 'up' },
+  { label: 'Clubes Parceiros', value: 127, change: 5, trend: 'up' },
+  { label: 'Histórias Publicadas', value: 892, change: 15, trend: 'up' }
 ];
 
 const todaysHighlights = [
   {
-    type: 'match' as const,
+    type: 'match',
     title: 'Corinthians x Palmeiras - Hoje às 19h',
     subtitle: 'Clássico Paulista pelo Brasileirão Feminino',
     image: 'https://s2-ge.glbimg.com/pE0_NVQwlJDyrNURorgjxLjY0PM=/0x0:787x519/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/d/E/dPvWU2Q52YbQLc03zjAg/20210908145219-825.png',
     badge: 'Ao Vivo em 2h',
-    badgeVariant: 'live' as const
+    badgeVariant: 'live',
+    path: '/jogos'
   },
   {
-    type: 'achievement' as const,
+    type: 'achievement',
     title: 'Gabi Portilho: Artilheira do Mês',
     subtitle: '8 gols em 5 partidas pelo Corinthians',
     image: 'https://static.corinthians.com.br/uploads/1734460948ecb9fe2fbb99c31f567e9823e884dbec.jpg',
     badge: 'Conquista',
-    badgeVariant: 'success' as const
+    badgeVariant: 'success',
+    path: '/noticias'
   },
   {
-    type: 'community' as const,
+    type: 'community',
     title: 'Campanha #PassaABola',
     subtitle: '10mil compartilhamentos em 24h',
     image: '/attached_assets/stock_images/Gemini_Generated_Image_s2jcels2jcels2jc.png',
     badge: 'Trending',
-    badgeVariant: 'info' as const
+    badgeVariant: 'info',
+    path: '/noticias'
   }
 ];
 
@@ -170,7 +173,7 @@ export default function Home() {
                     story={stories[currentStoryIndex]}
                     variant="featured"
                     className="max-w-2xl mx-auto"
-                    onStoryClick={() => handleStoryClick(stories[currentStoryIndex].id)}
+                    onStoryClick={(story) => handleStoryClick(story.id)}
                   />
                 </motion.div>
               </AnimatePresence>
@@ -229,7 +232,10 @@ export default function Home() {
               <Star className="w-5 h-5 text-yellow-500" />
               <span>Destaques de Hoje</span>
             </h2>
-            <button className="flex items-center space-x-1 text-primary-600 hover:text-primary-700 text-sm font-medium">
+            <button 
+              onClick={() => navigate('/noticias')}
+              className="flex items-center space-x-1 text-primary-600 hover:text-primary-700 text-sm font-medium"
+            >
               <span>Ver todos</span>
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -242,6 +248,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
+                onClick={() => navigate(highlight.path)}
                 className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all cursor-pointer group"
               >
                 <div className="relative h-32 overflow-hidden">
@@ -354,19 +361,15 @@ export default function Home() {
           transition={{ delay: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          <motion.div
-            className="col-span-1 md:col-span-2"
+          <motion.button
+            onClick={() => navigate('/inscrever-campeonato')}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            className="col-span-1 md:col-span-2 w-full bg-gradient-to-r from-primary-500 to-pink-500 text-white rounded-xl p-4 flex items-center justify-center space-x-3 transition-all shadow-lg hover:shadow-xl"
           >
-            <button 
-              onClick={() => navigate('/inscrever-campeonato')}
-              className="w-full bg-gradient-to-r from-primary-500 to-pink-500 text-white rounded-xl p-4 flex items-center justify-center space-x-3 transition-all shadow-lg hover:shadow-xl"
-            >
-              <Trophy className="w-6 h-6" />
-              <span className="font-semibold text-lg">Inscreva-se no Campeonato!</span>
-            </button>
-          </motion.div>
+            <Trophy className="w-6 h-6" />
+            <span className="font-semibold text-lg">Inscreva-se no Campeonato!</span>
+          </motion.button>
         </motion.section>
 
       </div>
