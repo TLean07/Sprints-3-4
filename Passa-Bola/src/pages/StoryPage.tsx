@@ -1,63 +1,44 @@
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Search } from 'lucide-react';
-import { ProductCard, type Product } from '../components/ui/ProductCard';
+import { ArrowLeft, Clock, User, Heart } from 'lucide-react';
+import type { PlayerStory } from '../components/ui/PlayerStoryCard';
+import { Avatar } from '../components/ui/Avatar';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
-import { useCart } from '../contexts/CartContext';
-import { toast } from 'react-hot-toast';
 
-const ShopPage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+const StoryPage = () => {
+  const { storyId } = useParams<{ storyId: string }>();
+  const navigate = useNavigate();
+  const [story, setStory] = useState<PlayerStory | null>(null);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
-  const { addToCart } = useCart();
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    console.log("Tentando renderizar StoryPage para storyId:", storyId); // Log de depuração
+
+    const fetchStory = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/data/products.json');
-        const data: Product[] = await response.json();
-        setProducts(data);
-        setFilteredProducts(data);
+        const response = await fetch('/data/stories.json');
+        if (!response.ok) {
+          throw new Error('Arquivo de histórias não encontrado');
+        }
+        const stories: PlayerStory[] = await response.json();
+        const foundStory = stories.find(s => s.id === storyId);
+        setStory(foundStory || null);
       } catch (error) {
-        console.error("Failed to fetch products:", error);
+        console.error("Falha ao buscar a história:", error);
+        setStory(null);
       } finally {
         setLoading(false);
       }
     };
-    fetchProducts();
-  }, []);
 
-  useEffect(() => {
-    let currentProducts = products;
-    if (selectedCategory !== 'Todos') {
-      currentProducts = currentProducts.filter(product => product.category === selectedCategory);
+    if (storyId) {
+      fetchStory();
+    } else {
+      setLoading(false);
     }
-    if (searchTerm) {
-      currentProducts = currentProducts.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    setFilteredProducts(currentProducts);
-  }, [searchTerm, selectedCategory, products]);
-
-  const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
-
-  const handleAddToCart = (product: Product) => {
-    if (!product.inStock) {
-      toast.error('Este produto está esgotado!');
-      return;
-    }
-    addToCart(product);
-  };
-  
-  const handleProductClick = (productId: string) => {
-    alert(`Visualizando detalhes do produto: ${productId} (Página de detalhes a ser criada)`);
-  };
+  }, [storyId]);
 
   if (loading) {
     return (
@@ -67,86 +48,79 @@ const ShopPage = () => {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-pink-50 pb-20 lg:pb-8">
-      <div className="px-4 py-6 space-y-8">
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center"
+  if (!story) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center text-center p-4 bg-gradient-to-br from-primary-50 to-pink-50">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">História não encontrada</h1>
+        <p className="text-gray-600 mb-6">O conteúdo que você está procurando não existe ou foi movido.</p>
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center space-x-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
         >
-          <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-            <ShoppingBag className="w-4 h-4 text-primary-600" />
-            <span className="text-sm font-semibold text-primary-600">
-              Loja Oficial Passa a Bola
-            </span>
-          </div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-            Produtos Exclusivos
-          </h1>
-          <p className="text-gray-600 max-w-md mx-auto">
-            Apoie o futebol feminino e mostre seu amor pelo esporte com nossos produtos únicos.
-          </p>
-        </motion.section>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white rounded-xl p-4 shadow-card flex flex-col space-y-4"
-        >
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Buscar produtos..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-2 justify-center">
-            {categories.map(category => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
-                  ${selectedCategory === category
-                    ? 'bg-primary-500 text-white shadow-md'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                onCardClick={handleProductClick}
-                onAddToCart={handleAddToCart} // <-- Esta é a linha crucial
-              />
-            ))
-          ) : (
-            <div className="col-span-full text-center py-12 text-gray-600">
-              <p className="text-lg">Nenhum produto encontrado para sua busca ou filtro.</p>
-            </div>
-          )}
-        </motion.section>
+          <ArrowLeft className="w-5 h-5" />
+          <span>Voltar para a Home</span>
+        </button>
       </div>
+    );
+  }
+
+  return (
+    <div className="bg-gradient-to-br from-primary-50 to-pink-50 min-h-screen py-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-4xl mx-auto px-4"
+      >
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center space-x-2 text-primary-600 hover:text-primary-800 font-semibold mb-6"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Voltar para a Home</span>
+        </button>
+        
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <img
+            src={story.storyImage}
+            alt={story.storyTitle}
+            className="w-full h-64 md:h-96 object-cover"
+          />
+          <div className="p-6 md:p-10">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+              {story.storyTitle}
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-b border-gray-200 py-4 mb-8">
+              <div 
+                className="flex items-center space-x-3 cursor-pointer group"
+              >
+                <Avatar src={story.playerAvatar} alt={story.playerName} size="lg" className="group-hover:ring-primary-300 transition-shadow"/>
+                <div>
+                  <p className="font-bold text-gray-800 group-hover:text-primary-600 transition-colors">{story.playerName}</p>
+                  <p className="text-sm text-gray-500">{story.playerPosition} • {story.playerTeam}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-gray-500">
+                <Clock className="w-4 h-4" />
+                <span>Publicado em {new Date(story.publishedAt).toLocaleDateString('pt-BR', { dateStyle: 'long' })}</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-gray-500">
+                <Heart className="w-4 h-4 text-red-500" />
+                <span>{story.likes.toLocaleString('pt-BR')} curtidas</span>
+              </div>
+            </div>
+            
+            <article className="prose prose-lg max-w-none text-gray-800">
+              <p className="whitespace-pre-line leading-relaxed">
+                {story.storyContent}
+              </p>
+            </article>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
 
-export default ShopPage;
+export default StoryPage;
