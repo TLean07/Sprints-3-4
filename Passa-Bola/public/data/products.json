@@ -1,0 +1,80 @@
+[
+  {
+    "id": "camiseta-passabola-home",
+    "name": "Camiseta Oficial Passa a Bola (Home)",
+    "description": "Camiseta oficial do movimento Passa a Bola, design elegante e confortável para o dia a dia e para apoiar o futebol feminino.",
+    "price": 89.90,
+    "imageUrl": "/attached_assets/stock_images/camisapassabola.png",
+    "category": "Vestuário",
+    "sizes": ["P", "M", "G", "GG"],
+    "colors": ["Rosa", "Branco"],
+    "inStock": true,
+    "rating": 4.8,
+    "reviewsCount": 120
+  },
+  {
+    "id": "caneca-rainhas-do-campo",
+    "name": "Caneca 'Rainhas do Campo'",
+    "description": "Caneca exclusiva com estampa 'Rainhas do Campo' e a logo Passa a Bola. Perfeita para seu café ou chá.",
+    "price": 34.50,
+    "imageUrl": "/attached_assets/stock_images/canecapassabola.png",
+    "category": "Acessórios",
+    "sizes": [],
+    "colors": ["Branco"],
+    "inStock": true,
+    "rating": 4.5,
+    "reviewsCount": 55
+  },
+  {
+    "id": "bola-futebol-rosa",
+    "name": "Bola de Futebol Feminino Oficial",
+    "description": "Bola de futebol tamanho 5, ideal para treinos e jogos. Design moderno com detalhes em rosa e a logo Passa a Bola.",
+    "price": 129.90,
+    "imageUrl": "/attached_assets/stock_images/passabolabola.png",
+    "category": "Esportes",
+    "sizes": [],
+    "colors": ["Branco/Rosa"],
+    "inStock": true,
+    "rating": 4.9,
+    "reviewsCount": 88
+  },
+  {
+    "id": "moletom-passabola",
+    "name": "Moletom Esportivo Passa a Bola",
+    "description": "Moletom quente e estiloso, ideal para dias mais frios. Com capuz ajustável e bolso canguru.",
+    "price": 189.90,
+    "imageUrl": "/attached_assets/stock_images/passabolamoletom.png",
+    "category": "Vestuário",
+    "sizes": ["P", "M", "G", "GG"],
+    "colors": ["Cinza", "Preto", "Rosa"],
+    "inStock": true,
+    "rating": 4.7,
+    "reviewsCount": 70
+  },
+  {
+    "id": "chaveiro-logo",
+    "name": "Chaveiro Logo Passa a Bola",
+    "description": "Pequeno e discreto, perfeito para mostrar seu apoio. Feito em metal resistente.",
+    "price": 19.90,
+    "imageUrl": "/attached_assets/stock_images/passabolachaveiro.png",
+    "category": "Acessórios",
+    "sizes": [],
+    "colors": ["Prata"],
+    "inStock": true,
+    "rating": 4.2,
+    "reviewsCount": 30
+  },
+  {
+    "id": "shorts-treino-feminino",
+    "name": "Shorts de Treino Feminino",
+    "description": "Shorts leve e respirável, perfeito para treinos intensos. Com logo discreta do Passa a Bola.",
+    "price": 79.90,
+    "imageUrl": "/attached_assets/stock_images/passabolashorts.png",
+    "category": "Vestuário",
+    "sizes": ["P", "M", "G"],
+    "colors": ["Preto", "Rosa"],
+    "inStock": false,
+    "rating": 4.6,
+    "reviewsCount": 45
+  }
+]

@@ -375,146 +375,146 @@ export default function TransfersPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className={cn(
-                    'bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all cursor-pointer',
+                    'bg-white rounded-xl p-4 sm:p-6 shadow-card hover:shadow-card-hover transition-all cursor-pointer',
                     'border border-gray-100 hover:border-primary-200',
                     transfer.category === 'high-profile' && 'ring-1 ring-yellow-200 bg-yellow-50/30'
                   )}
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="relative flex-shrink-0">
-                      <Avatar
-                        src={transfer.playerAvatar}
-                        alt={transfer.playerName}
-                        size="xl"
-                        className="ring-2 ring-primary-100"
-                      />
-                      <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm">
-                        {getCategoryIcon(transfer.category)}
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="relative flex-shrink-0">
+                        <Avatar
+                          src={transfer.playerAvatar}
+                          alt={transfer.playerName}
+                          size="xl"
+                          className="ring-2 ring-primary-100"
+                        />
+                        <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm">
+                          {getCategoryIcon(transfer.category)}
+                        </div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-1">
+                              {transfer.playerName}
+                            </h3>
+                            <div className="flex flex-wrap items-center gap-x-3 text-sm text-gray-500">
+                              <span>{transfer.position}</span>
+                              <span>•</span>
+                              <span>{transfer.age} anos</span>
+                              <span>•</span>
+                              <span>{transfer.nationality}</span>
+                            </div>
+                          </div>
+                          <Badge 
+                            variant={getStatusColor(transfer.status) as any}
+                            size="sm"
+                            className="flex-shrink-0 ml-2"
+                          >
+                            {transfer.status === 'confirmed' ? 'Confirmada' : 
+                             transfer.status === 'negotiating' ? 'Negociando' : 'Rumor'}
+                          </Badge>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-1">
-                            {transfer.playerName}
-                          </h3>
-                          <div className="flex flex-wrap items-center gap-x-3 text-sm text-gray-500">
-                            <span>{transfer.position}</span>
-                            <span>•</span>
-                            <span>{transfer.age} anos</span>
-                            <span>•</span>
-                            <span>{transfer.nationality}</span>
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <div className="flex w-full items-center justify-between gap-x-2">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <img
+                            src={transfer.fromClubLogo}
+                            alt={transfer.fromClub}
+                            className="w-8 h-8 rounded-full flex-shrink-0"
+                          />
+                          <div className="min-w-0">
+                            <p className="font-bold text-gray-900 text-sm leading-tight">
+                              {transfer.fromClub}
+                            </p>
+                            <p className="text-xs text-gray-500">Origem</p>
                           </div>
                         </div>
 
-                        <Badge 
-                          variant={getStatusColor(transfer.status) as any}
-                          size="sm"
-                          className="flex-shrink-0"
-                        >
-                          {transfer.status === 'confirmed' ? 'Confirmada' : 
-                           transfer.status === 'negotiating' ? 'Negociando' : 'Rumor'}
-                        </Badge>
+                        <div className="flex flex-col items-center flex-shrink-0 mx-1">
+                          <ArrowRight className="w-5 h-5 text-primary-500" />
+                          <Badge variant="outlined" size="sm" className="mt-1 whitespace-nowrap">
+                            {getTransferTypeLabel(transfer.transferType)}
+                          </Badge>
+                        </div>
+                        
+                        <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
+                          <div className="min-w-0 text-right">
+                            <p className="font-bold text-gray-900 text-sm leading-tight">
+                              {transfer.toClub}
+                            </p>
+                            <p className="text-xs text-gray-500">Destino</p>
+                          </div>
+                          <img
+                              src={transfer.toClubLogo}
+                              alt={transfer.toClub}
+                              className="w-8 h-8 rounded-full flex-shrink-0"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <div className="text-gray-500 mb-1">Valor</div>
+                        <div className="font-semibold text-gray-900 truncate">
+                          {formatTransferValue(transfer.transferValue)}
+                        </div>
                       </div>
                       
-                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4">
-                        <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-2 sm:gap-3">
-                          <div className="flex items-center gap-2 min-w-0">
-                            <img
-                              src={transfer.fromClubLogo}
-                              alt={transfer.fromClub}
-                              className="w-8 h-8 rounded flex-shrink-0"
-                            />
-                            <div className="min-w-0">
-                              <p className="font-semibold text-gray-900 text-sm leading-tight">
-                                {transfer.fromClub}
-                              </p>
-                              <p className="text-xs text-gray-500">Origem</p>
-                            </div>
-                          </div>
-
-                          <div className="flex flex-col items-center pt-1">
-                            <ArrowRight className="w-5 h-5 text-primary-500" />
-                            <Badge variant="outlined" size="sm" className="mt-1 whitespace-nowrap">
-                              {getTransferTypeLabel(transfer.transferType)}
-                            </Badge>
-                          </div>
-                          
-                          <div className="flex items-center gap-2 min-w-0 justify-end">
-                            <div className="min-w-0 text-right">
-                              <p className="font-semibold text-gray-900 text-sm leading-tight">
-                                {transfer.toClub}
-                              </p>
-                              <p className="text-xs text-gray-500">Destino</p>
-                            </div>
-                             <img
-                                src={transfer.toClubLogo}
-                                alt={transfer.toClub}
-                                className="w-8 h-8 rounded flex-shrink-0"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                      {transfer.contractLength && (
                         <div>
-                          <div className="text-gray-500 mb-1">Valor</div>
+                          <div className="text-gray-500 mb-1">Contrato</div>
                           <div className="font-semibold text-gray-900 truncate">
-                            {formatTransferValue(transfer.transferValue)}
-                          </div>
-                        </div>
-                        
-                        {transfer.contractLength && (
-                          <div>
-                            <div className="text-gray-500 mb-1">Contrato</div>
-                            <div className="font-semibold text-gray-900 truncate">
-                              {transfer.contractLength}
-                            </div>
-                          </div>
-                        )}
-                        
-                        <div>
-                          <div className="text-gray-500 mb-1">Valor de Mercado</div>
-                          <div className="font-semibold text-gray-900 truncate">
-                            {formatTransferValue(transfer.marketValue)}
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <div className="text-gray-500 mb-1">Anunciado</div>
-                          <div className="font-semibold text-gray-900 truncate">
-                            {new Date(transfer.announcedDate).toLocaleDateString('pt-BR')}
-                          </div>
-                        </div>
-                      </div>
-
-                      {transfer.previousSeasonStats && (
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                          <div className="text-sm text-gray-500 mb-2">Temporada Anterior</div>
-                          <div className="grid grid-cols-3 gap-4 text-sm">
-                            <div className="text-center bg-primary-50 rounded-lg py-2">
-                              <div className="font-bold text-primary-600">
-                                {transfer.previousSeasonStats.goals}
-                              </div>
-                              <div className="text-xs text-gray-600">Gols</div>
-                            </div>
-                            <div className="text-center bg-success-50 rounded-lg py-2">
-                              <div className="font-bold text-success-600">
-                                {transfer.previousSeasonStats.assists}
-                              </div>
-                              <div className="text-xs text-gray-600">Assistências</div>
-                            </div>
-                            <div className="text-center bg-blue-50 rounded-lg py-2">
-                              <div className="font-bold text-blue-600">
-                                {transfer.previousSeasonStats.matches}
-                              </div>
-                              <div className="text-xs text-gray-600">Jogos</div>
-                            </div>
+                            {transfer.contractLength}
                           </div>
                         </div>
                       )}
+                      
+                      <div>
+                        <div className="text-gray-500 mb-1">Valor de Mercado</div>
+                        <div className="font-semibold text-gray-900 truncate">
+                          {formatTransferValue(transfer.marketValue)}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-gray-500 mb-1">Anunciado</div>
+                        <div className="font-semibold text-gray-900 truncate">
+                          {new Date(transfer.announcedDate).toLocaleDateString('pt-BR')}
+                        </div>
+                      </div>
                     </div>
+
+                    {transfer.previousSeasonStats && (
+                      <div className="pt-4 border-t border-gray-100">
+                        <div className="text-sm text-gray-500 mb-2">Temporada Anterior</div>
+                        <div className="grid grid-cols-3 gap-4 text-sm">
+                          <div className="text-center bg-primary-50 rounded-lg py-2">
+                            <div className="font-bold text-primary-600">
+                              {transfer.previousSeasonStats.goals}
+                            </div>
+                            <div className="text-xs text-gray-600">Gols</div>
+                          </div>
+                          <div className="text-center bg-success-50 rounded-lg py-2">
+                            <div className="font-bold text-success-600">
+                              {transfer.previousSeasonStats.assists}
+                            </div>
+                            <div className="text-xs text-gray-600">Assistências</div>
+                          </div>
+                          <div className="text-center bg-blue-50 rounded-lg py-2">
+                            <div className="font-bold text-blue-600">
+                              {transfer.previousSeasonStats.matches}
+                            </div>
+                            <div className="text-xs text-gray-600">Jogos</div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}

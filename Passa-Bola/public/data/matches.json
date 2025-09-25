@@ -1,0 +1,219 @@
+[
+  {
+    "id": "corinthians-vs-palmeiras-2025-09-24",
+    "homeTeam": {
+      "id": "corinthians",
+      "name": "Corinthians",
+      "shortName": "COR",
+      "logo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/874.png",
+      "formation": "4-3-3",
+      "colors": { "primary": "#101010", "secondary": "#FFFFFF" }
+    },
+    "awayTeam": {
+      "id": "palmeiras",
+      "name": "Palmeiras",
+      "shortName": "PAL",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/800px-Palmeiras_logo.svg.png",
+      "formation": "4-4-2",
+      "colors": { "primary": "#006437", "secondary": "#FFFFFF" }
+    },
+    "competition": {
+      "name": "Brasileirão Feminino A1",
+      "logo": "https://upload.wikimedia.org/wikipedia/pt/a/ae/BR_fem_2018_logo.png"
+    },
+    "venue": {
+      "name": "Neo Química Arena"
+    },
+    "startTime": "2025-09-24T21:30:00-03:00",
+    "status": "live",
+    "round": "Semifinal - Jogo de Volta",
+    "score": {
+      "home": 1,
+      "away": 1
+    },
+    "events": [
+      { "id": "evt1", "minute": 25, "type": "goal", "player": "Bia Zaneratto", "team": "away", "assist": "Andressinha" },
+      { "id": "evt2", "minute": 44, "type": "yellow_card", "player": "Tamires", "team": "home" },
+      { "id": "evt3", "minute": 68, "type": "goal", "player": "Gabi Portilho", "team": "home", "assist": "Gabi Zanotti" }
+    ],
+    "lineups": {
+      "home": [
+        {"number": 1, "name": "Lelê", "position": "Goleira", "rating": 7.2},
+        {"number": 2, "name": "Katiuscia", "position": "Lateral", "rating": 6.8},
+        {"number": 3, "name": "Tarciane", "position": "Zagueira", "rating": 7.5},
+        {"number": 4, "name": "Yasmin", "position": "Zagueira", "rating": 7.1},
+        {"number": 6, "name": "Tamires", "position": "Lateral", "rating": 7.0},
+        {"number": 5, "name": "Diany", "position": "Meio-campo", "rating": 6.9},
+        {"number": 8, "name": "Gabi Zanotti", "position": "Meio-campo", "rating": 8.1},
+        {"number": 10, "name": "Vic Albuquerque", "position": "Meio-campo", "rating": 7.8},
+        {"number": 7, "name": "Jaqueline", "position": "Atacante", "rating": 7.4},
+        {"number": 11, "name": "Gabi Portilho", "position": "Atacante", "rating": 8.5},
+        {"number": 9, "name": "Jheniffer", "position": "Atacante", "rating": 7.6}
+      ],
+      "away": [
+        {"number": 1, "name": "Amanda", "position": "Goleira", "rating": 7.9},
+        {"number": 2, "name": "Bruna Calderan", "position": "Lateral", "rating": 7.0},
+        {"number": 4, "name": "Poliana", "position": "Zagueira", "rating": 7.2},
+        {"number": 3, "name": "Katrine", "position": "Zagueira", "rating": 6.8},
+        {"number": 6, "name": "Fe Palermo", "position": "Lateral", "rating": 7.1},
+        {"number": 5, "name": "Duda Santos", "position": "Meio-campo", "rating": 7.5},
+        {"number": 8, "name": "Andressinha", "position": "Meio-campo", "rating": 8.2},
+        {"number": 11, "name": "Camilinha", "position": "Meio-campo", "rating": 7.3},
+        {"number": 7, "name": "Chú Santos", "position": "Atacante", "rating": 7.0},
+        {"number": 10, "name": "Bia Zaneratto", "position": "Atacante", "rating": 8.8},
+        {"number": 9, "name": "Ary Borges", "position": "Atacante", "rating": 7.7}
+      ],
+      "home_substitutes": [
+        {"number": 12, "name": "Paty", "position": "Goleira"},
+        {"number": 13, "name": "Paulinha", "position": "Lateral"},
+        {"number": 14, "name": "Mariza", "position": "Meio-campo"},
+        {"number": 15, "name": "Grazi", "position": "Meio-campo"},
+        {"number": 16, "name": "Millene", "position": "Atacante"}
+      ],
+      "away_substitutes": [
+        {"number": 12, "name": "Tainá", "position": "Goleira"},
+        {"number": 13, "name": "Benítez", "position": "Zagueira"},
+        {"number": 14, "name": "Laís Estevam", "position": "Meio-campo"},
+        {"number": 15, "name": "Dudinha", "position": "Meio-campo"},
+        {"number": 16, "name": "Letícia", "position": "Atacante"}
+      ]
+    },
+    "statistics": {
+      "home": { "possession": 58, "shots": 12, "onTarget": 5, "fouls": 8, "corners": 6 },
+      "away": { "possession": 42, "shots": 9, "onTarget": 4, "fouls": 11, "corners": 3 }
+    },
+    "winProbability": {
+      "home": 30,
+      "draw": 25,
+      "away": 45
+    }
+  },
+  {
+    "id": "santos-vs-ferroviaria-2025-09-25",
+    "homeTeam": { "id": "santos", "name": "Santos", "shortName": "SAN", "logo": "https://upload.wikimedia.org/wikipedia/pt/0/03/Escudo_do_Santos_Futebol_Clube.png", "formation": "4-3-3", "colors": { "primary": "#000000", "secondary": "#FFFFFF" } },
+    "awayTeam": { "id": "ferroviaria", "name": "Ferroviária", "shortName": "FER", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Escudo_Associa%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Esportes.png/1024px-Escudo_Associa%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Esportes.png", "formation": "4-2-3-1", "colors": { "primary": "#512a48", "secondary": "#FFFFFF" } },
+    "competition": { "name": "Brasileirão Feminino A1", "logo": "https://upload.wikimedia.org/wikipedia/pt/a/ae/BR_fem_2018_logo.png" },
+    "venue": { "name": "Vila Belmiro" },
+    "startTime": "2025-09-25T19:00:00-03:00",
+    "status": "scheduled",
+    "round": "Semifinal - Jogo de Ida",
+    "score": null,
+    "events": [],
+    "lineups": {
+       "home": [
+        {"number": 12, "name": "Camila", "position": "Goleira", "rating": 0},
+        {"number": 2, "name": "Gi Fernandes", "position": "Lateral", "rating": 0},
+        {"number": 3, "name": "Camila Martins", "position": "Zagueira", "rating": 0},
+        {"number": 4, "name": "Tayla", "position": "Zagueira", "rating": 0},
+        {"number": 6, "name": "Bia Menezes", "position": "Lateral", "rating": 0},
+        {"number": 5, "name": "Brena", "position": "Meio-campo", "rating": 0},
+        {"number": 8, "name": "Ana Carla", "position": "Meio-campo", "rating": 0},
+        {"number": 10, "name": "Thaisinha", "position": "Meio-campo", "rating": 0},
+        {"number": 11, "name": "Ketlen", "position": "Atacante", "rating": 0},
+        {"number": 9, "name": "Cristiane", "position": "Atacante", "rating": 0},
+        {"number": 7, "name": "Jane", "position": "Atacante", "rating": 0}
+      ],
+      "away": [
+        {"number": 1, "name": "Luciana", "position": "Goleira", "rating": 0},
+        {"number": 2, "name": "Daiane", "position": "Lateral", "rating": 0},
+        {"number": 3, "name": "Luana", "position": "Zagueira", "rating": 0},
+        {"number": 4, "name": "Camila", "position": "Zagueira", "rating": 0},
+        {"number": 6, "name": "Barrinha", "position": "Lateral", "rating": 0},
+        {"number": 5, "name": "Nicoly", "position": "Meio-campo", "rating": 0},
+        {"number": 8, "name": "Ingryd", "position": "Meio-campo", "rating": 0},
+        {"number": 7, "name": "Aline Gomes", "position": "Meio-campo", "rating": 0},
+        {"number": 10, "name": "Laryh", "position": "Meio-campo", "rating": 0},
+        {"number": 11, "name": "Eudimilla", "position": "Meio-campo", "rating": 0},
+        {"number": 9, "name": "Sochor", "position": "Atacante", "rating": 0}
+      ],
+      "home_substitutes": [
+        {"number": 1, "name": "Gabi", "position": "Goleira"},
+        {"number": 13, "name": "Reina", "position": "Zagueira"},
+        {"number": 14, "name": "Laura", "position": "Meio-campo"},
+        {"number": 15, "name": "Erikinha", "position": "Meio-campo"},
+        {"number": 16, "name": "Jourdan", "position": "Atacante"}
+      ],
+      "away_substitutes": [
+        {"number": 12, "name": "Yanne", "position": "Goleira"},
+        {"number": 13, "name": "Gessica", "position": "Zagueira"},
+        {"number": 14, "name": "Amanda", "position": "Meio-campo"},
+        {"number": 15, "name": "Patrícia", "position": "Meio-campo"},
+        {"number": 16, "name": "Mylena", "position": "Atacante"}
+      ]
+    },
+    "statistics": null,
+    "winProbability": {
+      "home": 40,
+      "draw": 30,
+      "away": 30
+    }
+  },
+  {
+    "id": "flamengo-vs-internacional-2025-09-21",
+    "homeTeam": { "id": "flamengo", "name": "Flamengo", "shortName": "FLA", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Flamengo_braz_logo.svg/800px-Flamengo_braz_logo.svg.png", "formation": "4-2-3-1", "colors": { "primary": "#D32F2F", "secondary": "#101010" } },
+    "awayTeam": { "id": "internacional", "name": "Internacional", "shortName": "INT", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/SC_Internacional_Brazil_Logo.svg/800px-SC_Internacional_Brazil_Logo.svg.png", "formation": "4-3-3", "colors": { "primary": "#C40222", "secondary": "#FFFFFF" } },
+    "competition": { "name": "Brasileirão Feminino A1", "logo": "https://upload.wikimedia.org/wikipedia/pt/a/ae/BR_fem_2018_logo.png" },
+    "venue": { "name": "Estádio da Gávea" },
+    "startTime": "2025-09-21T16:00:00-03:00",
+    "status": "finished",
+    "round": "Quartas de Final",
+    "score": { "home": 3, "away": 1 },
+    "events": [
+      { "id": "evt1", "minute": 15, "type": "goal", "player": "Cristiane", "team": "home", "assist": "Duda" },
+      { "id": "evt2", "minute": 33, "type": "goal", "player": "Duda", "team": "home", "assist": "Gisseli" },
+      { "id": "evt3", "minute": 55, "type": "goal", "player": "Priscila", "team": "away", "assist": "Belén Aquino" },
+      { "id": "evt4", "minute": 82, "type": "goal", "player": "Giovanna Crivelari", "team": "home", "assist": "Duda" }
+    ],
+    "lineups": {
+      "home": [
+        {"number": 1, "name": "Bárbara", "position": "Goleira", "rating": 7.1},
+        {"number": 2, "name": "Monalisa", "position": "Lateral", "rating": 7.3},
+        {"number": 3, "name": "Daiane", "position": "Zagueira", "rating": 6.9},
+        {"number": 4, "name": "Thais Regina", "position": "Zagueira", "rating": 7.0},
+        {"number": 6, "name": "Gisseli", "position": "Lateral", "rating": 7.8},
+        {"number": 5, "name": "Kaylane", "position": "Meio-campo", "rating": 7.2},
+        {"number": 8, "name": "Thaisa", "position": "Meio-campo", "rating": 7.5},
+        {"number": 7, "name": "Darlene", "position": "Meio-campo", "rating": 8.0},
+        {"number": 10, "name": "Duda", "position": "Meio-campo", "rating": 9.2},
+        {"number": 11, "name": "Giovanna Crivelari", "position": "Meio-campo", "rating": 8.5},
+        {"number": 9, "name": "Cristiane", "position": "Atacante", "rating": 8.8}
+      ],
+      "away": [
+        {"number": 1, "name": "Gabi Barbieri", "position": "Goleira", "rating": 6.5},
+        {"number": 2, "name": "Tamara", "position": "Lateral", "rating": 6.2},
+        {"number": 3, "name": "Bruna Benites", "position": "Zagueira", "rating": 6.8},
+        {"number": 4, "name": "Isa Haas", "position": "Zagueira", "rating": 6.6},
+        {"number": 6, "name": "Eskerdinha", "position": "Lateral", "rating": 6.4},
+        {"number": 5, "name": "Capelinha", "position": "Meio-campo", "rating": 6.7},
+        {"number": 8, "name": "Letícia Monteiro", "position": "Meio-campo", "rating": 7.0},
+        {"number": 10, "name": "Analuyza", "position": "Meio-campo", "rating": 6.9},
+        {"number": 7, "name": "Belén Aquino", "position": "Atacante", "rating": 7.2},
+        {"number": 11, "name": "Fabiola Sandoval", "position": "Atacante", "rating": 6.8},
+        {"number": 9, "name": "Priscila", "position": "Atacante", "rating": 7.5}
+      ],
+      "home_substitutes": [
+        {"number": 12, "name": "Tainá", "position": "Goleira"},
+        {"number": 13, "name": "Jucinara", "position": "Lateral"},
+        {"number": 14, "name": "Lourdes", "position": "Meio-campo"},
+        {"number": 15, "name": "Naná", "position": "Atacante"},
+        {"number": 16, "name": "Glaucia", "position": "Atacante"}
+      ],
+      "away_substitutes": [
+        {"number": 12, "name": "May", "position": "Goleira"},
+        {"number": 13, "name": "Carla", "position": "Zagueira"},
+        {"number": 14, "name": "Pati", "position": "Meio-campo"},
+        {"number": 15, "name": "Danny", "position": "Meio-campo"},
+        {"number": 16, "name": "Soll", "position": "Atacante"}
+      ]
+    },
+    "statistics": {
+      "home": { "possession": 62, "shots": 15, "onTarget": 8, "fouls": 10, "corners": 7 },
+      "away": { "possession": 38, "shots": 7, "onTarget": 2, "fouls": 14, "corners": 4 }
+    },
+    "winProbability": {
+      "home": 70,
+      "draw": 15,
+      "away": 15
+    }
+  }
+]

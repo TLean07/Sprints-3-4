@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { LogOut, User, Menu, X } from 'lucide-react';
+import { LogOut, User, Menu, X, ShoppingBag } from 'lucide-react';
 import { auth } from '../../lib/firebase';
 import { signOut } from 'firebase/auth';
 import toast from 'react-hot-toast';
@@ -51,6 +51,13 @@ export const Navbar = () => {
         onClick={() => setIsMenuOpen(false)}
       >
         Transferências
+      </NavLink>
+      <NavLink 
+        to="/loja" 
+        className={({isActive}) => `font-semibold hover:text-pink-600 transition-colors flex items-center gap-2 ${isActive ? 'text-pink-600' : 'text-gray-900'}`}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <ShoppingBag size={20} /> <span className='md:hidden lg:inline'>Loja</span>
       </NavLink>
       <NavLink 
         to="/inscrever-campeonato" 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, 
@@ -10,52 +11,15 @@ import {
   Target,
   Star,
   ArrowRight,
-  PlayCircle
+  PlayCircle,
+  Trophy
 } from 'lucide-react';
-import { PlayerStoryCard } from '../components/ui/PlayerStoryCard';
+import { PlayerStoryCard, type PlayerStory } from '../components/ui/PlayerStoryCard';
 import { StatsCard } from '../components/ui/StatsCard';
-import { MatchCard } from '../components/ui/MatchCard';
 import { Badge } from '../components/ui/Badge';
 import { Avatar } from '../components/ui/Avatar';
 import { cn } from '../lib/utils';
-
-// Dados reais focados no futebol feminino brasileiro
-const featuredStories = [
-  {
-    id: '1',
-    playerId: 'marta-silva',
-    playerName: 'Marta Silva',
-    playerAvatar: '/attached_assets/stock_images/women_soccer_players_c153866f.jpg',
-    playerPosition: 'Atacante',
-    playerTeam: 'Orlando Pride',
-    storyTitle: 'A Jornada de Marta: De Dois Riachos ao Mundial',
-    storyContent: 'Conheça a história inspiradora da maior jogadora de futebol feminino de todos os tempos, desde seus primeiros chutes no interior de Alagoas até se tornar embaixadora global do esporte.',
-    storyImage: '/attached_assets/stock_images/football_stadium_soc_c75b2f5f.jpg',
-    publishedAt: '2024-03-20T10:00:00Z',
-    likes: 1247,
-    comments: 89,
-    shares: 156,
-    featured: true,
-    category: 'inspiration' as const
-  },
-  {
-    id: '2', 
-    playerId: 'debinha',
-    playerName: 'Debinha',
-    playerAvatar: '/attached_assets/stock_images/women_soccer_players_5b7250b8.jpg',
-    playerPosition: 'Meia',
-    playerTeam: 'North Carolina Courage',
-    storyTitle: 'Debinha e a Nova Geração: Preparação para Paris 2024',
-    storyContent: 'A meia-atacante fala sobre os preparativos da Seleção Brasileira para os Jogos Olímpicos de Paris e suas expectativas para a competição.',
-    storyImage: '/attached_assets/stock_images/women_soccer_players_662cb026.jpg',
-    publishedAt: '2024-03-19T14:30:00Z',
-    likes: 856,
-    comments: 42,
-    shares: 78,
-    featured: true,
-    category: 'achievement' as const
-  }
-];
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 
 const communityStats = [
   { label: 'Jogadoras Cadastradas', value: 2847, change: 12, trend: 'up' as const },
@@ -69,7 +33,7 @@ const todaysHighlights = [
     type: 'match' as const,
     title: 'Corinthians x Palmeiras - Hoje às 19h',
     subtitle: 'Clássico Paulista pelo Brasileirão Feminino',
-    image: '/attached_assets/stock_images/football_stadium_soc_ed3f8321.jpg',
+    image: 'https://s2-ge.glbimg.com/pE0_NVQwlJDyrNURorgjxLjY0PM=/0x0:787x519/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/d/E/dPvWU2Q52YbQLc03zjAg/20210908145219-825.png',
     badge: 'Ao Vivo em 2h',
     badgeVariant: 'live' as const
   },
@@ -77,7 +41,7 @@ const todaysHighlights = [
     type: 'achievement' as const,
     title: 'Gabi Portilho: Artilheira do Mês',
     subtitle: '8 gols em 5 partidas pelo Corinthians',
-    image: '/attached_assets/stock_images/women_soccer_players_91702f6c.jpg',
+    image: 'https://static.corinthians.com.br/uploads/1734460948ecb9fe2fbb99c31f567e9823e884dbec.jpg',
     badge: 'Conquista',
     badgeVariant: 'success' as const
   },
@@ -85,7 +49,7 @@ const todaysHighlights = [
     type: 'community' as const,
     title: 'Campanha #PassaABola',
     subtitle: '10mil compartilhamentos em 24h',
-    image: '/attached_assets/stock_images/women_soccer_players_4ab20e2b.jpg',
+    image: '/attached_assets/stock_images/Gemini_Generated_Image_s2jcels2jcels2jc.png',
     badge: 'Trending',
     badgeVariant: 'info' as const
   }
@@ -96,7 +60,7 @@ const recentPlayers = [
     name: 'Tamires',
     team: 'Corinthians',
     position: 'Lateral-Esquerda',
-    avatar: '/attached_assets/stock_images/women_soccer_players_4ab20e2b.jpg',
+    avatar: 'https://centraldotimao.com.br/wp-content/uploads/2021/10/7b758aec-804b-4075-922c-28ec9248ea41.png',
     rating: 8.7,
     trending: true
   },
@@ -104,7 +68,7 @@ const recentPlayers = [
     name: 'Ary Borges',
     team: 'Racing Louisville',
     position: 'Volante',
-    avatar: '/attached_assets/stock_images/women_soccer_players_662cb026.jpg',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQKp-YrgHBkg11eR_UP4hb1EJbvoJh0Nj7_g&s',
     rating: 8.4,
     trending: false
   },
@@ -112,72 +76,52 @@ const recentPlayers = [
     name: 'Antônia',
     team: 'Levante',
     position: 'Atacante',
-    avatar: '/attached_assets/stock_images/women_soccer_players_c153866f.jpg',
+    avatar: 'https://midias.correiobraziliense.com.br/_midias/jpg/2023/07/18/675x450/1_copadomundofeminina_selecaobrasileira_futebolfeminino_antonia_1_570x321_png-28517430.jpg?20230718121919?20230718121919',
     rating: 8.9,
     trending: true
   }
 ];
 
 export default function Home() {
-  const [currentStory, setCurrentStory] = useState(0);
+  const [stories, setStories] = useState<PlayerStory[]>([]);
+  const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Integração com dados reais da API de notícias para enriquecer a Home
-    const loadData = async () => {
+    const loadStories = async () => {
+      setLoading(true);
       try {
-        const { getNewsFromAPI } = await import('../services/api');
-        const realNews = await getNewsFromAPI();
-        
-        if (realNews && realNews.length > 0) {
-          // Atualizar estatísticas da comunidade com dados mais dinâmicos
-          communityStats[3].value = Math.min(communityStats[3].value + realNews.length, 999);
-          communityStats[3].change = Math.floor(Math.random() * 20) + 5;
-          
-          console.log(`✨ Carregadas ${realNews.length} notícias reais na Home`);
-        }
+        const response = await fetch('/data/stories.json');
+        const data = await response.json();
+        setStories(data);
       } catch (error) {
-        console.log('Usando dados estáticos da Home');
+        console.error("Failed to load stories:", error);
       } finally {
         setLoading(false);
       }
     };
-
-    loadData();
+    loadStories();
   }, []);
 
   useEffect(() => {
-    // Auto-rotate featured stories
+    if (stories.length === 0) return;
+
     const interval = setInterval(() => {
-      setCurrentStory((prev) => (prev + 1) % featuredStories.length);
+      setCurrentStoryIndex((prev) => (prev + 1) % stories.length);
     }, 8000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [stories]);
+
+  const handleStoryClick = (storyId: string) => {
+    navigate(`/historias/${storyId}`);
+  };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-pink-50">
-        <div className="px-4 py-8">
-          {/* Hero skeleton */}
-          <div className="mb-8">
-            <div className="h-64 bg-white/60 rounded-2xl animate-pulse" />
-          </div>
-          
-          {/* Stats skeleton */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {[1,2,3,4].map(i => (
-              <div key={i} className="h-24 bg-white/60 rounded-xl animate-pulse" />
-            ))}
-          </div>
-          
-          {/* Content skeleton */}
-          <div className="space-y-4">
-            {[1,2,3].map(i => (
-              <div key={i} className="h-32 bg-white/60 rounded-xl animate-pulse" />
-            ))}
-          </div>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-pink-50">
+        <LoadingSpinner />
       </div>
     );
   }
@@ -186,7 +130,6 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-pink-50 pb-20 lg:pb-8">
       <div className="px-4 py-6 space-y-8">
         
-        {/* Hero Section - Featured Story */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -213,40 +156,43 @@ export default function Home() {
             </p>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentStory}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.5 }}
-            >
-              <PlayerStoryCard
-                story={featuredStories[currentStory]}
-                variant="featured"
-                className="max-w-2xl mx-auto"
-              />
-            </motion.div>
-          </AnimatePresence>
+          {stories.length > 0 && (
+            <>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentStoryIndex}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <PlayerStoryCard
+                    story={stories[currentStoryIndex]}
+                    variant="featured"
+                    className="max-w-2xl mx-auto"
+                    onStoryClick={() => handleStoryClick(stories[currentStoryIndex].id)}
+                  />
+                </motion.div>
+              </AnimatePresence>
 
-          {/* Story indicators */}
-          <div className="flex justify-center space-x-2 mt-4">
-            {featuredStories.map((_, index) => (
-              <button
-                key={`story-indicator-${index}`}
-                onClick={() => setCurrentStory(index)}
-                className={cn(
-                  'w-2 h-2 rounded-full transition-all duration-300',
-                  index === currentStory
-                    ? 'bg-primary-500 w-6'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                )}
-              />
-            ))}
-          </div>
+              <div className="flex justify-center space-x-2 mt-4">
+                {stories.map((_, index) => (
+                  <button
+                    key={`story-indicator-${index}`}
+                    onClick={() => setCurrentStoryIndex(index)}
+                    className={cn(
+                      'w-2 h-2 rounded-full transition-all duration-300',
+                      index === currentStoryIndex
+                        ? 'bg-primary-500 w-6'
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    )}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </motion.section>
 
-        {/* Community Stats */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -273,7 +219,6 @@ export default function Home() {
           />
         </motion.section>
 
-        {/* Today's Highlights */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -333,7 +278,6 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* Rising Stars */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -404,22 +348,25 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* Quick Actions */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="grid grid-cols-2 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          <button className="bg-primary-500 hover:bg-primary-600 text-white rounded-xl p-4 flex items-center justify-center space-x-2 transition-colors">
-            <Calendar className="w-5 h-5" />
-            <span className="font-medium">Próximos Jogos</span>
-          </button>
-          
-          <button className="bg-white hover:bg-gray-50 text-gray-900 rounded-xl p-4 flex items-center justify-center space-x-2 transition-colors border border-gray-200">
-            <Award className="w-5 h-5" />
-            <span className="font-medium">Ranking</span>
-          </button>
+          <motion.div
+            className="col-span-1 md:col-span-2"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <button 
+              onClick={() => navigate('/inscrever-campeonato')}
+              className="w-full bg-gradient-to-r from-primary-500 to-pink-500 text-white rounded-xl p-4 flex items-center justify-center space-x-3 transition-all shadow-lg hover:shadow-xl"
+            >
+              <Trophy className="w-6 h-6" />
+              <span className="font-semibold text-lg">Inscreva-se no Campeonato!</span>
+            </button>
+          </motion.div>
         </motion.section>
 
       </div>

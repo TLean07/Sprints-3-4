@@ -8,7 +8,8 @@ import {
   User,
   Menu,
   X,
-  Bell
+  Bell,
+  ShoppingBag
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useAuth } from '../../hooks/useAuth';
@@ -19,6 +20,7 @@ const navItems = [
   { id: 'matches', label: 'Jogos', icon: Calendar, path: '/jogos' },
   { id: 'news', label: 'Notícias', icon: Newspaper, path: '/noticias' },
   { id: 'transfers', label: 'Transferências', icon: RefreshCcw, path: '/transferencias' },
+  { id: 'shop', label: 'Loja', icon: ShoppingBag, path: '/loja' },
 ];
 
 export default function MobileLayout() {
@@ -36,7 +38,6 @@ export default function MobileLayout() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Mobile Header */}
       <header className="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="flex items-center justify-between px-4 h-16">
           <div className="flex items-center space-x-3">
@@ -80,7 +81,6 @@ export default function MobileLayout() {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
             <div className="fixed inset-0 bg-black/20" onClick={() => setIsMobileMenuOpen(false)} />
@@ -149,7 +149,6 @@ export default function MobileLayout() {
         )}
       </header>
 
-      {/* Desktop Sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
         <div className="flex flex-col flex-grow bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto">
           <div className="flex items-center flex-shrink-0 px-6">
@@ -197,23 +196,27 @@ export default function MobileLayout() {
                     {user.email}
                   </p>
                 </div>
+                <button
+                  onClick={signOut}
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Sair
+                </button>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="lg:pl-64">
         <main className="min-h-screen">
           <Outlet />
         </main>
       </div>
 
-      {/* Bottom Navigation for Mobile */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 z-30 shadow-2xl">
         <div className="flex items-center px-2 py-1">
-          {navItems.slice(0, 4).map((item) => {
+          {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPath === item.path;
             
@@ -277,7 +280,6 @@ export default function MobileLayout() {
         </div>
       </nav>
 
-      {/* Bottom padding to account for mobile navigation */}
       <div className="h-20 lg:hidden" />
     </div>
   );

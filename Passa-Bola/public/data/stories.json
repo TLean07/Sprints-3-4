@@ -1,0 +1,36 @@
+[
+  {
+    "id": "a-jornada-de-marta",
+    "playerId": "marta-silva",
+    "playerName": "Marta Silva",
+    "playerAvatar": "https://conteudo.imguol.com.br/c/esporte/20/2021/07/23/marta-usou-o-cabelo-para-esconder-o-simbolo-da-nike-fornecedora-esportiva-da-cbf-1627057163253_v2_450x600.jpg",
+    "playerPosition": "Atacante",
+    "playerTeam": "Orlando Pride",
+    "storyTitle": "A Jornada de Marta: De Dois Riachos ao Mundial",
+    "storyContent": "Nascida em Dois Riachos, uma pequena cidade no interior de Alagoas, Marta Vieira da Silva demonstrou desde cedo um talento extraordinário para o futebol. Desafiando preconceitos e dificuldades, ela deixou sua casa aos 14 anos em busca do sonho de se tornar jogadora profissional. Sua jornada a levou para grandes clubes no Brasil, na Suécia e nos Estados Unidos, acumulando títulos e recordes. Eleita seis vezes a melhor jogadora do mundo pela FIFA, Marta é a maior artilheira da história das Copas do Mundo (masculina e feminina) e um símbolo de perseverança e empoderamento para milhões de meninas ao redor do globo. Esta é a história de como uma garota de Alagoas se tornou a Rainha do Futebol.",
+    "storyImage": "https://s2-ge.glbimg.com/wTsiU0E1dNMZgfabP6YReMlfkgM=/0x0:2410x1674/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2025/Q/f/itbYnLSZqaxy0ZjyAIpQ/afp-20250803-68m83g3-v1-highres-fblcopaamerica2025womencolbra.jpg",
+    "publishedAt": "2024-03-20T10:00:00Z",
+    "likes": 1247,
+    "comments": 89,
+    "shares": 156,
+    "featured": true,
+    "category": "inspiration"
+  },
+  {
+    "id": "debinha-e-a-nova-geracao",
+    "playerId": "debinha",
+    "playerName": "Debinha",
+    "playerAvatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGCFC5IfspSlF8UDH6Ho-M_-IRwxKMltQOw&s",
+    "playerPosition": "Meia",
+    "playerTeam": "Kansas City Current",
+    "storyTitle": "Debinha e a Nova Geração: A Liderança Técnica da Seleção",
+    "storyContent": "Debinha se consolidou como uma das líderes técnicas da nova geração da Seleção Brasileira. Com sua habilidade, visão de jogo e capacidade de decisão, ela é peça-chave no esquema tático do time. Nesta matéria especial, a meia-atacante fala sobre a responsabilidade de ser uma referência para as jogadoras mais novas, os desafios da preparação para as grandes competições internacionais e a evolução do futebol feminino no Brasil e no mundo. 'Temos um grupo muito talentoso e unido. Acredito que podemos chegar longe e trazer muitas alegrias para o nosso país', afirma a jogadora, confiante no futuro da equipe.",
+    "storyImage": "https://s2-ge.glbimg.com/llXnRmoQUZc-EFLqZxJDZgHrrMI=/0x0:4000x2520/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/F/P/kATygSQKmKB0gq6GSVwA/gettyimages-1323100680.jpg",
+    "publishedAt": "2024-03-19T14:30:00Z",
+    "likes": 856,
+    "comments": 42,
+    "shares": 78,
+    "featured": true,
+    "category": "achievement"
+  }
+]
