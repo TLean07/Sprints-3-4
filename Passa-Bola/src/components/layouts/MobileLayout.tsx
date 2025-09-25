@@ -9,14 +9,16 @@ import {
   Menu,
   X,
   Bell,
-  ShoppingBag
+  ShoppingBag,
+  LogIn,
+  LogOut // Importar LogOut para o botão de sair
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { useAuth } from '../../hooks/useAuth'; // Assumindo que você usa este hook
+import { useAuth } from '../../hooks/useAuth';
 import { Avatar } from '../ui/Avatar';
-import { useCart } from '../../contexts/CartContext'; // Importar useCart
-import { CartModal } from '../ui/CartModal'; // Importar o Modal de Carrinho
-import { toast } from 'react-hot-toast'; // Importar toast para notificações
+import { toast } from 'react-hot-toast';
+import { CartModal } from '../ui/CartModal';
+import { useCart } from '../../contexts/CartContext';
 
 const navItems = [
   { id: 'home', label: 'Início', icon: Home, path: '/' },
@@ -28,9 +30,9 @@ const navItems = [
 
 export default function MobileLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false); // Estado para controlar o modal do carrinho
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { user, signOut } = useAuth();
-  const { cartCount } = useCart(); // Pega a contagem de itens do carrinho
+  const { cartCount } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ export default function MobileLayout() {
     navigate(path);
     setIsMobileMenuOpen(false);
   };
-
+  
   const handleProfileNavigation = () => {
     if (user) {
       navigate('/perfil');
@@ -53,7 +55,7 @@ export default function MobileLayout() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} /> {/* O Modal do Carrinho */}
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
       <header className="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="flex items-center justify-between px-4 h-16">
@@ -62,11 +64,7 @@ export default function MobileLayout() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <h1 className="text-xl font-bold text-primary-600">
               Passa Bola
@@ -80,7 +78,7 @@ export default function MobileLayout() {
             </button>
             
             <button
-              onClick={() => setIsCartOpen(true)} // Botão do carrinho no header mobile
+              onClick={() => setIsCartOpen(true)}
               className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 relative"
             >
               <ShoppingBag className="w-5 h-5" />
@@ -97,11 +95,11 @@ export default function MobileLayout() {
                 alt={user.displayName}
                 size="sm"
                 className="cursor-pointer"
-                onClick={handleProfileNavigation}
+                onClick={() => navigate('/perfil')}
               />
             ) : (
               <button
-                onClick={handleProfileNavigation}
+                onClick={() => navigate('/login')}
                 className="text-sm font-medium text-primary-600 hover:text-primary-700"
               >
                 Entrar
@@ -166,9 +164,10 @@ export default function MobileLayout() {
                     </div>
                     <button
                       onClick={signOut}
-                      className="text-sm text-gray-600 hover:text-gray-900"
+                      className="p-2 text-gray-500 hover:text-red-500"
+                      title="Sair"
                     >
-                      Sair
+                      <LogOut className="w-5 h-5" />
                     </button>
                   </div>
                 </div>
@@ -207,7 +206,28 @@ export default function MobileLayout() {
                 </button>
               );
             })}
-            {/* Adiciona o botão de Perfil na barra lateral do desktop */}
+            {/* Adiciona o item do carrinho na navegação desktop */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className={cn(
+                'w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-colors',
+                isCartOpen // Você pode adicionar uma lógica de ativação se quiser que ele mude de estilo quando o modal estiver aberto
+                  ? 'bg-primary-50 text-primary-600 font-medium'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+              )}
+            >
+              <div className="relative">
+                <ShoppingBag className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border border-white">
+                    {cartCount}
+                  </div>
+                )}
+              </div>
+              <span>Carrinho</span>
+            </button>
+            
+            {/* Botão de Perfil */}
             <button
               onClick={handleProfileNavigation}
               className={cn(
@@ -222,7 +242,7 @@ export default function MobileLayout() {
             </button>
           </nav>
 
-          {user && (
+          {user ? (
             <div className="flex-shrink-0 px-4">
               <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
                 <Avatar
@@ -240,11 +260,22 @@ export default function MobileLayout() {
                 </div>
                 <button
                   onClick={signOut}
-                  className="text-sm text-gray-600 hover:text-gray-900"
+                  className="p-2 text-gray-500 hover:text-red-500"
+                  title="Sair"
                 >
-                  Sair
+                  <LogOut className="w-5 h-5" />
                 </button>
               </div>
+            </div>
+          ) : (
+            <div className="flex-shrink-0 px-4 py-4">
+              <button
+                onClick={() => navigate('/login')}
+                className="w-full bg-gradient-to-r from-primary-500 to-pink-500 text-white font-semibold py-3 rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              >
+                <LogIn className="w-5 h-5" />
+                <span>Entrar / Cadastrar</span>
+              </button>
             </div>
           )}
         </div>
