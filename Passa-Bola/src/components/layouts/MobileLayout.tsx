@@ -12,8 +12,11 @@ import {
   ShoppingBag
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth'; // Assumindo que você usa este hook
 import { Avatar } from '../ui/Avatar';
+import { useCart } from '../../contexts/CartContext'; // Importar useCart
+import { CartModal } from '../ui/CartModal'; // Importar o Modal de Carrinho
+import { toast } from 'react-hot-toast'; // Importar toast para notificações
 
 const navItems = [
   { id: 'home', label: 'Início', icon: Home, path: '/' },
@@ -25,7 +28,9 @@ const navItems = [
 
 export default function MobileLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); // Estado para controlar o modal do carrinho
   const { user, signOut } = useAuth();
+  const { cartCount } = useCart(); // Pega a contagem de itens do carrinho
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,10 +39,22 @@ export default function MobileLayout() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleProfileNavigation = () => {
+    if (user) {
+      navigate('/perfil');
+    } else {
+      toast.error('Você precisa estar logado para acessar o perfil.');
+      navigate('/login');
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   const currentPath = location.pathname;
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} /> {/* O Modal do Carrinho */}
+
       <header className="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="flex items-center justify-between px-4 h-16">
           <div className="flex items-center space-x-3">
@@ -62,17 +79,29 @@ export default function MobileLayout() {
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-live rounded-full" />
             </button>
             
+            <button
+              onClick={() => setIsCartOpen(true)} // Botão do carrinho no header mobile
+              className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 relative"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {cartCount > 0 && (
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white">
+                  {cartCount}
+                </div>
+              )}
+            </button>
+            
             {user ? (
               <Avatar
                 src={user.photoURL}
                 alt={user.displayName}
                 size="sm"
                 className="cursor-pointer"
-                onClick={() => navigate('/perfil')}
+                onClick={handleProfileNavigation}
               />
             ) : (
               <button
-                onClick={() => navigate('/login')}
+                onClick={handleProfileNavigation}
                 className="text-sm font-medium text-primary-600 hover:text-primary-700"
               >
                 Entrar
@@ -178,6 +207,19 @@ export default function MobileLayout() {
                 </button>
               );
             })}
+            {/* Adiciona o botão de Perfil na barra lateral do desktop */}
+            <button
+              onClick={handleProfileNavigation}
+              className={cn(
+                'w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-colors',
+                currentPath === '/perfil'
+                  ? 'bg-primary-50 text-primary-600 font-medium'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+              )}
+            >
+              <User className="w-5 h-5" />
+              <span>Perfil</span>
+            </button>
           </nav>
 
           {user && (
@@ -252,7 +294,7 @@ export default function MobileLayout() {
           })}
           
           <button
-            onClick={() => navigate(user ? '/perfil' : '/login')}
+            onClick={handleProfileNavigation}
             className={cn(
               'flex-1 flex flex-col items-center py-3 px-2 mx-1 rounded-2xl transition-all duration-300 relative overflow-hidden active:scale-95',
               currentPath === '/perfil'

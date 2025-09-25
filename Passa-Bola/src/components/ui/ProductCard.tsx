@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Star, ShoppingCart } from 'lucide-react';
-import { Badge } from './Badge';
+import { toast } from 'react-hot-toast';
 
 export interface Product {
   id: string;
@@ -18,17 +18,18 @@ export interface Product {
 
 interface ProductCardProps {
   product: Product;
-  onClick: (productId: string) => void;
+  onCardClick: (productId: string) => void;
+  onAddToCart: (product: Product) => void;
 }
 
-export const ProductCard = ({ product, onClick }: ProductCardProps) => {
+export const ProductCard = ({ product, onCardClick, onAddToCart }: ProductCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
-      onClick={() => onClick(product.id)}
+      className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full group"
+      onClick={() => onCardClick(product.id)}
     >
       <div className="relative h-48 sm:h-56 overflow-hidden">
         <img
@@ -38,7 +39,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
         />
         {!product.inStock && (
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <Badge variant="danger">Esgotado</Badge>
+            <span className="bg-red-500 text-white px-3 py-1 text-sm font-bold rounded-full">Esgotado</span>
           </div>
         )}
       </div>
@@ -46,10 +47,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
         <h3 className="text-lg font-semibold text-gray-900 mb-1 line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-sm text-gray-600 line-clamp-2 flex-grow mb-2">
-          {product.description}
-        </p>
-        <div className="flex items-center justify-between mt-auto">
+        <div className="flex items-center justify-between mt-auto pt-2">
           <span className="text-xl font-bold text-primary-600">
             R$ {product.price.toFixed(2).replace('.', ',')}
           </span>
@@ -61,12 +59,8 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
         </div>
         <button
           onClick={(e) => {
-            e.stopPropagation(); // Evita que o clique no botão ative o onClick do card
-            if (product.inStock) {
-              alert(`Adicionado ${product.name} ao carrinho! (Funcionalidade a ser implementada)`);
-            } else {
-              toast.error('Produto esgotado!');
-            }
+            e.stopPropagation();
+            onAddToCart(product);
           }}
           disabled={!product.inStock}
           className="mt-4 w-full bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-xl transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-2"

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Filter, Search } from 'lucide-react';
+import { ShoppingBag, Search } from 'lucide-react';
 import { ProductCard, type Product } from '../components/ui/ProductCard';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner';
-import { Input } from '../components/ui/Input'; // Supondo que você tenha um componente Input
+import { useCart } from '../contexts/CartContext';
+import { toast } from 'react-hot-toast';
 
 const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -11,6 +12,7 @@ const ShopPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Todos');
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,7 +24,6 @@ const ShopPage = () => {
         setFilteredProducts(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
-        // Fallback ou mensagem de erro para o usuário
       } finally {
         setLoading(false);
       }
@@ -32,27 +33,29 @@ const ShopPage = () => {
 
   useEffect(() => {
     let currentProducts = products;
-
-    // Filtrar por categoria
     if (selectedCategory !== 'Todos') {
       currentProducts = currentProducts.filter(product => product.category === selectedCategory);
     }
-
-    // Filtrar por termo de busca
     if (searchTerm) {
       currentProducts = currentProducts.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-
     setFilteredProducts(currentProducts);
   }, [searchTerm, selectedCategory, products]);
 
   const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
 
+  const handleAddToCart = (product: Product) => {
+    if (!product.inStock) {
+      toast.error('Este produto está esgotado!');
+      return;
+    }
+    addToCart(product);
+  };
+  
   const handleProductClick = (productId: string) => {
-    // Implementar navegação para a página de detalhes do produto no futuro
     alert(`Visualizando detalhes do produto: ${productId} (Página de detalhes a ser criada)`);
   };
 
@@ -86,7 +89,6 @@ const ShopPage = () => {
           </p>
         </motion.section>
 
-        {/* Search and Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,7 +123,6 @@ const ShopPage = () => {
           </div>
         </motion.div>
 
-        {/* Product Grid */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,7 +131,12 @@ const ShopPage = () => {
         >
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} onClick={handleProductClick} />
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                onCardClick={handleProductClick}
+                onAddToCart={handleAddToCart}
+              />
             ))
           ) : (
             <div className="col-span-full text-center py-12 text-gray-600">
